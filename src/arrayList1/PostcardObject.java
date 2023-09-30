@@ -3,9 +3,9 @@ import postcard.Postcard;
 
 //Из объектов этого класса будет создаваться список на массиве.
 public class PostcardObject {
-    public Postcard postcardOb;
+    public Postcard po;
 
     public PostcardObject(Postcard postcard){
-        this.postcardOb = postcard;
+        this.po = postcard;
     }
 }

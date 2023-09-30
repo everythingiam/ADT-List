@@ -1,10 +1,10 @@
 package arrayList1;
 public class Position {
-    //для массива просто число - порядковый номер элемента
-    //для связного списка адрес конкретного элемента в памяти
-    private int position;
+
+    //для массива позиция просто число - порядковый номер элемента
+    public int p;
 
     public Position(int position){
-        this.position = position;
+        this.p = position;
     }
 }
