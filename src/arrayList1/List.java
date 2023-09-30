@@ -1,4 +1,5 @@
-public class List1 {
+package arrayList1;
+public class List {
     private Object obj; //массив
     private Position last; //последний занятый
 
