@@ -1,61 +1,82 @@
 package arrayList1;
+import postcard.Postcard;
+
 public class List {
-    private Object obj; //массив
-    private Position last; //последний занятый
+    private PostcardObject[] postcards_list; //массив
+    private int last; //последний занятый
 
-    //создание массива объектов
-    public List( obj){
-        this.obj = obj;
-        последний = -1;
+    //конструктор, массив объектов
+    public List(){
+        postcards_list = new PostcardObject[20];
+        last = -1;
     }
 
-    public Position next(Position p(5), неявно список){
-        вернуть p+1 с проверкой того, не выходит ли позиция за пределы массива;
-        и добавить проверку есои элемент последний
-        return p+1;
+    //Возвращает следующую за рos позицию
+    public Position getNext(Position pos){
+        // вернуть p+1 с проверкой того, не выходит ли позиция за пределы массива.
+        // если выходит - выбросить исключение.
+        return new Position(pos.p + 1);
     }
 
-    public Position end(L){
-        возвращает last + 1 (по идее null);
-    }
+    //Возвращает позицию после последнего 
+    public Position getEndL(){
+        return new Position(last + 1);
+        }
     
-    public Position first(L){
-        если массив не пустой, то возвращаем позицию 0
+    //Возвращает первую позицию
+    public Position getFirst(){
+        // если массив не пустой, то возвращаем позицию 0
+        return new Position(0);
     }
 
-    public Position previous(int p){
-        вернуть p-1 с проверкой того, не выходит ли позиция за пределы массивa;
-        и еще добавить проверку если элемент первый
+    //Возвращает позицию перед pos.
+    public Position getPrevious(Position pos){
+        // вернуть pos-1 с проверкой того, не выходит ли позиция за пределы массивa
+        // если выходит - выбросить исключение.
+        // и еще добавить проверку если элемент первый
+        return new Position(pos.p - 1);
     }
 
-    public retrive(int p, L){
-        возвращаем объект в позиции р. (return obj[p])
-        Если позиции р в списке нет или р = Енд(Л), 
-        то результат неопределен(исключение)
+    //Возвращает элемент в позиции pos
+    public Postcard retrieve(Position pos){
+        //вернуть элемент из списка в позиции pos
+        //если позиции нет, выбросить исключение
+        return postcards_list[pos.p].cardObject;
     }
 
-    public void insert(int p, L, T x){
-        если позиции в списке нет (позиция больше чем ласт), то ничего не
-        делаем (return);
-        в цикле начинаем отсчёт с последнего элемента до того момента, пока 
-        i не достигнет номера позиции. в этом цикле собственно делаем
-        obj[i]] = obj[i-1];
-        после цикла найденная позиция становится объектом x;
-        а последний увеличивается на 1
+    //Вставляет элемент х в позицию pos
+    public void insert(Position pos, Postcard x){
+        // проверить, есть ли позиция такая
+        // если её нет, ничего не делать (return)
+        // все элементы сдвинуть с конца вправо
+        // и когда сдвинутся, вставить х в позицию pos
+
     }
 
-    public void makeNull(L) {
-        циклом обнуляем каждый элемент через уикл
-        и ласт делаем -1
+    //Делает список пустым
+    public void makeNull() {
+        last = -1;
     }
 
-    public void delete(int p, L){
-        
+    //[1, 6, 9, 1, 3(last), 5]
+    //Удаляет элемент в позиции pos
+    public void delete(Position pos){
+        // если позиции нет - ничего не делать
+        // в цикле от pos до конца сдвинуть все элементы на 1 назад
+        // уменьшить last на 1
     }
 
-    public Position locate(неявный параметр, Position p){
-        просто через цикл находим
+    //Возвращает позицию
+    public Position locate(PostcardObject postcard){
+        // через цикл проходим по элементам в массиве
+        // и возвращаем встретившийся элемент
+        // если его нет, то выбрасываем исключение
+        return new Position(1);
     }
 
-    [1, 5, 6, 8, 10, 13] 
+    //Печатает список
+    public void print(){
+        // через цикл от первого до last напечатать.. 
+        // ну к каждому элементу приписать print_postcard()
+    }
 }

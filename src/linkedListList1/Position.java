@@ -3,9 +3,9 @@ public class Position {
 
     //для связного списка позиция адрес конкретного элемента в памяти, 
     // короче просто сравнивать адреса
-    private int p;
+    public PostcardObject p;
 
-    public Position(int position){
+    public Position(PostcardObject position){
         this.p = position;
     }
 }
