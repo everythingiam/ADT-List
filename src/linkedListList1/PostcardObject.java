@@ -3,11 +3,10 @@ import postcard.Postcard;
 
 //Из объектов этого класса будет создаваться список на связном списке.
 public class PostcardObject {
-    public Postcard postcardOb;
-    public Postcard next;
+    public Postcard cardObject;
+    public PostcardObject next;
 
     public PostcardObject(Postcard postcard){
-        this.postcardOb = postcard;
-        next = null;
+        this.cardObject = postcard;
     }
 }

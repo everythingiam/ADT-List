@@ -1,61 +1,82 @@
 package linkedListList1;
+
+import postcard.Postcard;
+
 public class List {
-    private Object obj; //массив
-    private Position last; //последний занятый
+    private PostcardObject head; //массив
 
-    //создание массива объектов
-    public List( obj){
-        this.obj = obj;
-        последний = -1;
+    //конструктор, массив объектов
+    public List(){
+        head = null;
     }
 
-    public Position next(Position p(5), неявно список){
-        вернуть p+1 с проверкой того, не выходит ли позиция за пределы массива;
-        и добавить проверку есои элемент последний
-        return p+1;
-    }
-
-    public Position end(L){
-        возвращает last + 1 (по идее null);
-    }
-    
-    public Position first(L){
-        если массив не пустой, то возвращаем позицию 0
-    }
-
-    public Position previous(int p){
-        вернуть p-1 с проверкой того, не выходит ли позиция за пределы массивa;
-        и еще добавить проверку если элемент первый
-    }
-
-    public retrive(int p, L){
-        возвращаем объект в позиции р. (return obj[p])
-        Если позиции р в списке нет или р = Енд(Л), 
-        то результат неопределен(исключение)
-    }
-
-    public void insert(int p, L, T x){
-        если позиции в списке нет (позиция больше чем ласт), то ничего не
-        делаем (return);
-        в цикле начинаем отсчёт с последнего элемента до того момента, пока 
-        i не достигнет номера позиции. в этом цикле собственно делаем
-        obj[i]] = obj[i-1];
-        после цикла найденная позиция становится объектом x;
-        а последний увеличивается на 1
-    }
-
-    public void makeNull(L) {
-        циклом обнуляем каждый элемент через уикл
-        и ласт делаем -1
-    }
-
-    public void delete(int p, L){
+    //Возвращает следующую за рos позицию
+    public Position getNext(Position pos){
+        //если список не пустой, вернуть следующий.
+        //если элемент первый, вернуть head.next
+        //
+        return new Position(pos.p.next);
+        //return null если нет следующей 
         
     }
 
-    public Position locate(неявный параметр, Position p){
-        просто через цикл находим
+    //Возвращает позицию после последнего 
+    public Position getEndL(){
+        return new Position(null);
+        }
+    
+    //Возвращает первую позицию
+    public Position getFirst(){
+        // возвращаем голову 
+        return new Position(head);
     }
 
-    [1, 5, 6, 8, 10, 13] 
+    //Возвращает позицию перед pos.
+    public Position getPrevious(Position pos){
+        PostcardObject previous = head;
+        // если такая позиция есть и она не первая, то
+        // создать переменную previous и впихнуть в неё head.
+        // и пока previous.next не станет пустым, 
+        // то проходить через список.
+        // дойдет до конца - вернуть previous
+        return new Position(previous);
+        //вернуть null если нет пердыдущей
+    }
+    
+    //Возвращает элемент в позиции pos
+    public Postcard retrieve(Position pos){ //РАСПИСАТЬ КАК ПРОВЕРИТЬ СУЩЕСТВОВАНИЕ ПОЗИЦИИ (создать метод)
+        //если такая позиция есть, вернуть объект из неё.
+        //если нет - выбросить исключение
+        return pos.p.cardObject; 
+    }
+
+    //Вставляет элемент х в позицию pos
+    public void insert(Position pos, Postcard x){
+        // если список пустой, то x.next = head, a head = x 
+        // если не пустой, то берем предыдущий элемент 
+        // делаем его текущим
+        // следующий за текущим делаем x
+        // сдвигаем всё вправо
+    }
+
+    //Делает список пустым
+    public void makeNull() {
+        head = null; //обнулить ссылку на head
+    }
+
+    
+    //Удаляет элемент в позиции pos
+    public void delete(Position pos){
+        
+    }
+
+    //Возвращает позицию
+    public Position locate(Postcard postcard){
+        PostcardObject current = head;
+        // пройтись по всему списку
+        // если встретился элемент - вернуть его позицию
+        return new Position(current);
+        // если не встречается - вернуть end (null)
+    }
 }
+

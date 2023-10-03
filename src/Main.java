@@ -23,7 +23,7 @@ public class Main {
             // while (p != L.end()) {
             //     q = L.next(p);
             //     while (q != L.end()) {
-            //         if (совпадвет(L.retrieve(p),L.retrieve(q)))
+            //         if (совпадает(L.retrieve(p),L.retrieve(q)))
             //             L.delete(q);
             //         else 
             //             q = L.next(q);

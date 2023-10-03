@@ -70,8 +70,8 @@ public class List {
     public Position locate(PostcardObject postcard){
         // через цикл проходим по элементам в массиве
         // и возвращаем встретившийся элемент
-        // если его нет, то выбрасываем исключение
-        return new Position(1);
+        // если его нет, то возвращаем последний
+        return new Position(last + 1);
     }
 
     //Печатает список
