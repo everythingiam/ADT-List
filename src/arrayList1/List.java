@@ -15,6 +15,7 @@ public class List {
     public Position getNext(Position pos){
         // вернуть p+1 с проверкой того, не выходит ли позиция за пределы массива.
         // если выходит - выбросить исключение.
+        
         return new Position(pos.p + 1);
     }
 
@@ -46,6 +47,11 @@ public class List {
 
     //Вставляет элемент х в позицию pos
     public void insert(Position pos, Postcard x){
+        last++;
+        for (int i = last; i > 0; i--) {
+            postcards_list[i] = postcards_list[i + 1];
+        }
+        postcards_list[pos.p].cardObject = x;
         // проверить, есть ли позиция такая
         // если её нет, ничего не делать (return)
         // все элементы сдвинуть с конца вправо
@@ -78,5 +84,9 @@ public class List {
     public void print(){
         // через цикл от первого до last напечатать.. 
         // ну к каждому элементу приписать print_postcard()
+        for (int i = 0; i <= last; i++) {
+            postcards_list[i].cardObject.print_postcard();
+        }
+        System.out.println();
     }
 }
