@@ -35,7 +35,7 @@ public class Postcard {
         }
         System.out.print(" ");
         for (int i = 0; i < adress.length; i++) {
-            System.out.println(adress[i]);
+            System.out.print(adress[i]);
         }
     }
 

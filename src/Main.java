@@ -1,5 +1,6 @@
 import arrayList1.*;
 // import linkedListList1;
+import exception.MyException;
 import postcard.Postcard;
 
 public class Main {
@@ -22,35 +23,57 @@ public class Main {
 
 
     }
-    public static void main(String[] args) {
-            //1. Создаем объект списка - List L = new List();
-            //2. инициализируем его с помощью init(L);
-            //3. ставим p(позицию) как первый элемент списка;
-            //4. дальше проворачиваем махинацию удаления дубликатов, 
-            //которую Андрей Сергеевич когда-то написал нам на доске
-//            List L = new List();
-//            init(L);
-//            Position p = L.getFirst();
-        System.out.println("helo");
+    public static void main(String[] args){
+        //1. Создаем объект списка - List L = new List();
+        //2. инициализируем его с помощью init(L);
+        //3. ставим p(позицию) как первый элемент списка;
+        //4. дальше проворачиваем махинацию удаления дубликатов,
+        //которую Андрей Сергеевич когда-то написал нам на доске
+        List L = new List();
+        init(L);
+        Postcard pc5 = new Postcard(new char[]{'k', 'a', 's', 'h', 'a'}, new char[]{'N', 'e', 'w', ' ', 'Y', 'o', 'r', 'k'});
+        Position pos = new Position(1);
+        L.insert(pos, pc5);
+        System.out.println();
+        L.print();
+        Position next = L.getNext(pos);
+        Position endL = L.getEndL();
+        System.out.println();
+        List L2 = new List();
+//           Position first = L2.getFirst();
+        init(L2);
+        Position pos2 = new Position(3);
+        Position next2 = L2.getNext(pos2);
+        Position previous = L.getPrevious(pos);
+        System.out.println(next2.p);
+        System.out.println(previous.p);
+        L.retrieve(pos).print_postcard();
 
+        System.out.println();
+        System.out.println();
+        L2.print();
+        System.out.println();
+        L2.delete(pos);
+        L2.print();
 
-            // p, q - позиция в списке, L - список
-            
-            // p = L.first;
-            // while (p != L.end()) {
-            //     q = L.next(p);
-            //     while (q != L.end()) {
-            //         if (совпадает(L.retrieve(p),L.retrieve(q)))
-            //             L.delete(q);
-            //         else 
-            //             q = L.next(q);
-            //     }
-            //     p = L.next(p);
-            // }
+        System.out.println(L.getEndL().p);
 
-            //за 'совпадает' отвечает метод isEqual(Postcard: b)
-            //потом как-нибудь при реализации зафигачу его в алгоритм 
-
-            //5. ну и печатаем обработанный результат L.print()
+        Position located = L.locate(pc5);
+        System.out.println(located.p);
+        // p, q - позиция в списке, L - список
+        // p = L.first;
+        // while (p != L.end()) {
+        //     q = L.next(p);
+        //     while (q != L.end()) {
+        //         if (совпадает(L.retrieve(p),L.retrieve(q)))
+        //             L.delete(q);
+        //         else
+        //             q = L.next(q);
+        //     }
+        //     p = L.next(p);
+        // }
+        //за 'совпадает' отвечает метод isEqual(Postcard: b)
+        //потом как-нибудь при реализации зафигачу его в алгоритм
+        //5. ну и печатаем обработанный результат L.print()
     }
 }

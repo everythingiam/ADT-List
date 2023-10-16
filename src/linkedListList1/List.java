@@ -1,6 +1,7 @@
 package linkedListList1;
 
 import postcard.Postcard;
+import exception.MyException;
 
 public class List {
     private PostcardObject head; //массив
