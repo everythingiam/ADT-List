@@ -58,7 +58,7 @@ public class List {
     public void insert(Position pos, Postcard x){ //почти есть
         last++;
         if (pos.p > last)
-            return; //Спросить у АНДРЕЯ СЕРГЕИЧА, условие срабатывает, а не ретёрнится
+            return;
 
         for (int i = last; i > pos.p; i--) {
             postcards_list[i] = postcards_list[i - 1];
@@ -79,14 +79,14 @@ public class List {
 
     //[1, 6, 9, 1, 3(last), 5]
     //Удаляет элемент в позиции pos
-    public void delete(Position pos){ //есть
+    public Position delete(Position pos){ //есть
         if (pos.p < last + 1){
             for (int i = pos.p + 1; i <= last ; i++) {
                 postcards_list[i-1] = postcards_list[i];
             }
             last--;
         }
-
+        return pos;
         // если позиции нет - ничего не делать
         // в цикле от pos до конца сдвинуть все элементы на 1 назад
         // уменьшить last на 1
@@ -114,4 +114,10 @@ public class List {
             System.out.println();
         }
     }
+
+    //метод сравнения не работает правильно из класса Лист...
+    public boolean areEqualPos(Position a, Position b){
+        return a.p == b.p;
+    }
+
 }

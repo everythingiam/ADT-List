@@ -1,13 +1,15 @@
-package linkedListList1;
+package duoListList1;
+
 import postcard.Postcard;
 
-//Из объектов этого класса будет создаваться список на связном списке.
 public class PostcardObject {
     public Postcard cardObject;
     public PostcardObject next;
+    public PostcardObject prev;
 
     public PostcardObject(Postcard postcard){
         next = null;
+        prev = null;
         this.cardObject = postcard;
     }
     public PostcardObject(PostcardObject x){
