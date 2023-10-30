@@ -7,5 +7,6 @@ public class Position {
     public Position(PostcardObject position){
         this.p = position;
     }
+
 }
 

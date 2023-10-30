@@ -29,7 +29,7 @@ public class Postcard {
 
      //Метод проверяет, равны ли почтовые отправления (я называю карточки).
      //Нужен для того, чтобы в main сделать алогритм удаления дубликатов.
-     public boolean isEqual(Postcard b){
+     public boolean isDataEqual(Postcard b){
         Postcard a = this;
         for (int i = 0; i < a.name.length; i++) {
             if (a.name[i] != b.name[i]){

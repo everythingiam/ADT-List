@@ -1,5 +1,5 @@
-import arrayList1.*;
-// import linkedListList1;
+//import arrayList1.*;
+import linkedListList1.*;
 import exception.MyException;
 import postcard.Postcard;
 
@@ -40,7 +40,7 @@ public class Main {
         List L = new List();
         init(L);
         Postcard pc5 = new Postcard(new char[]{'k', 'a', 's', 'h', 'a'}, new char[]{'N', 'e', 'w', ' ', 'Y', 'o', 'r', 'k'});
-        Position pos = new Position(6);
+
         System.out.println();
 //        L.insert(pos, pc5);
 //        System.out.println();
@@ -74,10 +74,10 @@ public class Main {
 //         удаление дубликатов
         Position p = L.getFirst();
         Position q;
-         while (!(L.areEqualPos(p, L.getEndL()))) {
+         while (!(L.arePosEqual(p, L.getEndL()))) {
              q = L.getNext(p);
-             while (!L.areEqualPos(q, L.getEndL())) {
-                 if (L.retrieve(p).isEqual(L.retrieve(q))){
+             while (!L.arePosEqual(q, L.getEndL())) {
+                 if (L.retrieve(p).isDataEqual(L.retrieve(q))){
                      q = L.delete(q);
                  } else {
                      q = L.getNext(q);

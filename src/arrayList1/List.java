@@ -115,8 +115,8 @@ public class List {
         }
     }
 
-    //метод сравнения не работает правильно из класса Лист...
-    public boolean areEqualPos(Position a, Position b){
+    //метод сравнения не работает правильно из класса Position...
+    public boolean arePosEqual(Position a, Position b){
         return a.p == b.p;
     }
 
