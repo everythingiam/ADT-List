@@ -12,8 +12,4 @@ public class PostcardObject {
         prev = null;
         this.cardObject = postcard;
     }
-    public PostcardObject(PostcardObject x){
-        cardObject = x.cardObject;
-        next = null;
-    }
 }

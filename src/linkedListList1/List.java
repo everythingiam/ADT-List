@@ -6,7 +6,7 @@ import exception.MyException;
 public class List {
     private PostcardObject head; //массив
 
-    //конструктор, массив объектов
+    //конструктор, голова изначално
     public List(){
         head = null;
     }
