@@ -38,6 +38,12 @@ public class List {
         return new Position(0);
     }
 
+    public Position getLast(){
+        if (last == -1)
+            throw new MyException("Empty list!!!");
+        return new Position(last);
+    }
+
     //Возвращает позицию перед pos.
     public Position getPrevious(Position pos){ //есть
         // вернуть pos-1 с проверкой того, не выходит ли позиция за пределы массивa
@@ -52,7 +58,7 @@ public class List {
     public Postcard retrieve(Position pos){ //есть
         //вернуть элемент из списка в позиции pos
         //если позиции нет, выбросить исключение
-        if (pos.p > last + 1)
+        if (pos.p > last)
             throw new MyException("Pos is out of bounds!!!");
         return postcards_list[pos.p].cardObject;
     }

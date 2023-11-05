@@ -38,15 +38,12 @@ public class Main {
             return;
         }
         L.print();
-        Postcard pc4 = new Postcard(new char[]{'m', 'i', 's', 's', 'i', 'n', 'g'}, new char[]{'N', 'e', 'w', '-', 'Y', 'o', 'r', 'k'});
-        Postcard pc5 = new Postcard(new char[]{'k', 'a', 's', 'h', 'a'}, new char[]{'N', 'e', 'w', '-', 'Y', 'o', 'r', 'k'});
-        Postcard pc6 = new Postcard(new char[]{'D', 'a', 's', 'h', 'a'}, new char[]{'N', 'e', 'w', '-', 'Y', 'o', 'r', 'k'});
+        Postcard tom = new Postcard(new char[]{'T', 'o', 'm'}, new char[]{'I', 'T', 'M', 'O'});
+        Postcard babushka = new Postcard(new char[]{'b', 'a', 'b', 'u', 's', 'h', 'k', 'a'}, new char[]{'N', 'e', 'w', '-', 'Y', 'o', 'r', 'k'});
+        Postcard kasha = new Postcard(new char[]{'k', 'a', 's', 'h', 'a'}, new char[]{'N', 'e', 'w', '-', 'Y', 'o', 'r', 'k'});
+        Postcard dasha = new Postcard(new char[]{'D', 'a', 's', 'h', 'a'}, new char[]{'N', 'e', 'w', '-', 'Y', 'o', 'r', 'k'});
 
         System.out.println();
-        System.out.println();
-
-        Position located = L.locate(pc5);
-        L.insert(located, pc6);
 
         Position p = L.getFirst();
         Position q;
@@ -63,9 +60,33 @@ public class Main {
          }
          L.print();
 
-//        System.out.println();
-//
-//        Position located = L.locate(pc5);
-//        L.insert(located, pc6);
+        System.out.println();
+
+        System.out.println("Проверки методов:");
+        L.insert(L.locate(kasha), babushka); //вставка в середину
+        L.insert(L.locate(kasha), babushka);
+
+        L.insert(L.getFirst(), tom); //вставка в начало самое (перед первым)
+
+        L.insert(L.getEndL(), dasha); //вставка в позицию после последнего
+
+        L.insert(L.locate(dasha), tom); //вставка в последний элемент
+
+        L.print();
+        System.out.println();
+        L.retrieve(L.locate(kasha)).print_postcard();
+
+        System.out.println();
+        L.retrieve(L.getNext(L.locate(kasha))).print_postcard();
+
+        System.out.println();
+        L.retrieve(L.getLast()).print_postcard();
+
+        System.out.println();
+        L.retrieve(L.getFirst()).print_postcard();
+
+        System.out.println();
+        L.retrieve(L.getPrevious(L.locate(kasha))).print_postcard();
+
     }
 }
