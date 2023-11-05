@@ -100,12 +100,12 @@ public class List {
     }
 
     //Возвращает позицию
-    public Position locate(Postcard postcard){ //есть
+    public Position locate(Postcard x){ //есть
         // через цикл проходим по элементам в массиве
         // и возвращаем позицию встретившегося элемента
         // если его нет, то возвращаем последнюю
         for (int i = 0; i <= last; i++) {
-            if (postcards_list[i].cardObject.isDataEqual(postcard)){
+            if (postcards_list[i].cardObject.isDataEqual(x)){
                 return new Position(i);
             }
         }

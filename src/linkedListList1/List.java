@@ -12,12 +12,12 @@ public class List {
     }
 
     public static void initCurosor(){
-
     }
     //Возвращает следующую за рos позицию
     public Position getNext(Position pos){ //есть
         //если список не пустой, вернуть следующий.
         //если элемент первый, вернуть head.next
+        //исключение, если нет следующей
         if (pos.p == head)
             return new Position(head.next);
 
@@ -27,8 +27,6 @@ public class List {
             return new Position(previous.next);
         }
         throw new MyException("Position is out of bounds!");
-        //исключение если нет следующей
-        
     }
 
     //Возвращает позицию после последнего 
@@ -42,6 +40,12 @@ public class List {
         return new Position(this.head);
     }
 
+    //Возвращает последнюю позицию
+    public Position getLast(){
+        PostcardObject last = last();
+        return new Position(last);
+    }
+    //Возвращает последний элемент
     private PostcardObject last() { //есть
         PostcardObject current = head;
         PostcardObject previous = null;
@@ -67,26 +71,28 @@ public class List {
     }
     //Возвращает позицию перед pos.
     public Position getPrevious(Position pos){ //есть
+        // если такая позиция есть и она не первая, то
+        // создать переменную previous и впихнуть в неё head.
+        // и пока previous.next не станет пустым,
+        // то проходить через список.
+        // дойдет до конца - вернуть previous
+        //вернуть исключен е если нет пердыдущей
         PostcardObject previous = getPrevious(pos.p);
         if (previous != null){
             return new Position(previous);
         }
         throw new MyException("Position is out of bounds");
-        // если такая позиция есть и она не первая, то
-        // создать переменную previous и впихнуть в неё head.
-        // и пока previous.next не станет пустым, 
-        // то проходить через список.
-        // дойдет до конца - вернуть previous
-        //вернуть исключен е если нет пердыдущей
     }
     
     //Возвращает элемент в позиции pos
-    public Postcard retrieve(Position pos){
-       if ((pos.p == head) || (getPrevious(pos.p)) != null) //есть
-           return pos.p.cardObject;
+    public Postcard retrieve(Position pos){ //есть
         //проверять наличием предыдущего элемента
         //если такая позиция есть, вернуть объект из неё.
         //если нет - выбросить исключение
+        PostcardObject previous = getPrevious(pos.p);
+        if ((pos.p == head) || previous != null) {
+            return pos.p.cardObject;
+        }
         throw new MyException("Position is out of bounds");
     }
 
@@ -122,7 +128,6 @@ public class List {
 
     //Делает список пустым
     public void makeNull() { //есть
-
         head = null; //обнулить ссылку на head
     }
 
@@ -133,15 +138,16 @@ public class List {
         if (pos.p == null)
             return pos;
         //удалить из головы
-        if(pos.p == head){
+        if (pos.p == head){
             head = head.next;
             return new Position(head);
         }
 
         //если позиция не в списке
         PostcardObject previous = getPrevious(pos.p);
-        if (previous == null)
+        if (previous == null) {
             return pos;
+        }
 
         //удаление из конца или середины
         previous.next = pos.p.next;
@@ -150,21 +156,21 @@ public class List {
     public boolean arePosEqual(Position a, Position b){
         return a.p == b.p;
     }
+
     //Возвращает позицию
-//    public Position locate(Postcard x){
-//        PostcardObject current = head;
-//        // пройтись по всему списку
-//        // если встретился элемент - вернуть его позицию
-//        PostcardObject xx = new PostcardObject(x);
-//        while (current != null){
-//            if (isEqual(current, xx)){
-//                return new Position(current);
-//            }
-//            current= current.next;
-//        }
-//        return null;
-//        // если не встречается - вернуть end (null)
-//    }
+    public Position locate(Postcard x){
+        // пройтись по всему списку
+        // если встретился элемент - вернуть его позицию
+        // если не встречается - вернуть end (null)
+        PostcardObject current = head;
+        while (current != null){
+            if (current.cardObject.isDataEqual(x)){
+                return new Position(current);
+            }
+            current= current.next;
+        }
+        return null;
+    }
     public void print(){ //есть
         //проходимя по всему списку и печатаем поэлементно
         PostcardObject current = head;

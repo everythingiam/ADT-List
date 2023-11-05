@@ -1,5 +1,5 @@
-import arrayList1.*;
-//import linkedListList1.*;
+//import arrayList1.*;
+import linkedListList1.*;
 //import duoListList1.*;
 import postcard.Postcard;
 import java.util.Scanner;
@@ -47,6 +47,7 @@ public class Main {
 
         Position p = L.getFirst();
         Position q;
+
          while (!(L.arePosEqual(p, L.getEndL()))) {
              q = L.getNext(p);
              while (!L.arePosEqual(q, L.getEndL())) {
