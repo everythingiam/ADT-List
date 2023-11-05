@@ -12,6 +12,9 @@ public class List {
         last = -1;
     }
 
+    public static void initCurosor(){
+
+    }
     //Возвращает следующую за рos позицию
     public Position getNext(Position pos){ //есть
         // вернуть p+1 с проверкой того, не выходит ли позиция за пределы массива.

@@ -11,6 +11,9 @@ public class List {
         head = null;
     }
 
+    public static void initCurosor(){
+
+    }
     //Возвращает следующую за рos позицию
     public Position getNext(Position pos){ //есть
         //если список не пустой, вернуть следующий.
@@ -78,7 +81,7 @@ public class List {
     }
     
     //Возвращает элемент в позиции pos
-    public Postcard retrieve(Position pos){ //РАСПИСАТЬ КАК ПРОВЕРИТЬ СУЩЕСТВОВАНИЕ ПОЗИЦИИ (создать метод)
+    public Postcard retrieve(Position pos){
        if ((pos.p == head) || (getPrevious(pos.p)) != null) //есть
            return pos.p.cardObject;
         //проверять наличием предыдущего элемента

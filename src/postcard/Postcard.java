@@ -19,10 +19,6 @@ public class Postcard {
         for (int i = 0; i < x.adress.length; i++) {
             this.adress[i] = x.adress[i];
         }
-//        for (int i = 0; i < this.name.length; i++) {
-//
-//        }
-//        Postcard copy = new Postcard(this.name, this.adress);
     }
     
 //     //скопировать массивы

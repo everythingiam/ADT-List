@@ -1,35 +1,26 @@
-//import arrayList1.*;
-import linkedListList1.*;
+import arrayList1.*;
+//import linkedListList1.*;
 import exception.MyException;
 import postcard.Postcard;
+import java.util.Scanner;
+import java.util.regex.Pattern;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 public class Main {
-    public static void init(List L){
-        //временная инициализация
-        //1. Создаем карточки - объекты типа Postcard, какие хотим
-        //например, карточка с прекрасным именем Алина из города Нью-Йорк.
-        //2. Создаём массив из этих объектов 
-        //3. С помощью цикла помещаем элементы массива в список L
-        //через функию insert, которая вставляет каждый раз тупо в конец
-        //4. Можно вывести построчно через print();
-        char[] nameTest = {'a', 'l', 'i', 'n', 'a'};
-//        Postcard pc1 = new Postcard(new char[]{'a', 'l', 'i', 'n', 'a'}, new char[]{'N', 'e', 'w', ' ', 'Y', 'o', 'r', 'k'});
-        Postcard pc1 = new Postcard(nameTest, new char[]{'N', 'e', 'w', ' ', 'Y', 'o', 'r', 'k'});
-        Postcard pc2 = new Postcard(new char[]{'s', 'a', 's', 'h', 'a'}, new char[]{'N', 'e', 'w', ' ', 'Y', 'o', 'r', 'k'});
-        Postcard pc3 = new Postcard(new char[]{'m', 'a', 's', 'h', 'a'}, new char[]{'N', 'e', 'w', ' ', 'Y', 'o', 'r', 'k'});
-        Postcard pc4 = new Postcard(new char[]{'a', 'l', 'i', 'n', 'a'}, new char[]{'N', 'e', 'w', ' ', 'Y', 'o', 'r', 'k'});
-
-        Postcard[] array = {pc1, pc2, pc3, pc4};
-        for (int i = 0; i < array.length; i++) {
-            L.insert(L.getEndL(), array[i]);
+    public static void initFile(List L, String filePath) throws FileNotFoundException {
+        File file = new File(filePath);
+        Scanner scan = new Scanner(file);
+        Pattern pat = Pattern.compile("[\\s\\t]+"); // Паттерн разделения элементов
+        while (scan.hasNextLine()) {
+            String str = scan.nextLine(); // Чтение строки
+            String[] sn = pat.split(str.trim()); // Разделение строки на составляющие
+            char[] name = sn[0].toCharArray();
+            char[] adress = sn[1].toCharArray();
+            Postcard pc = new Postcard(name, adress);
+            L.insert(L.getEndL(), pc);
         }
-//        L.print();
-//        pc4.name = new char[] {'a', 'n', 'd', 'r', 'e', 'i'};
-//        pc1.name = new char[10];
-        System.out.println();
-        L.print();
-
-
+        scan.close();
     }
     public static void main(String[] args){
         //1. Создаем объект списка - List L = new List();
@@ -38,11 +29,19 @@ public class Main {
         //4. дальше проворачиваем махинацию удаления дубликатов,
         //которую Андрей Сергеевич когда-то написал нам на доске
         List L = new List();
-        init(L);
+        List.initCurosor();
+        try {
+            initFile(L,"File.txt");
+        } catch (FileNotFoundException e) {
+            System.out.println("Файла не существует");
+            return;
+        }
+        L.print();
         Postcard pc5 = new Postcard(new char[]{'k', 'a', 's', 'h', 'a'}, new char[]{'N', 'e', 'w', ' ', 'Y', 'o', 'r', 'k'});
 
         System.out.println();
-//        L.insert(pos, pc5);
+        Position pos = new Position(2);
+        L.insert(pos, pc5);
 //        System.out.println();
 //        L.print();
 //        Position next = L.getNext(pos);
