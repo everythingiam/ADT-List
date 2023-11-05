@@ -8,7 +8,4 @@ public class Position {
         p = position;
     }
 
-//    public boolean areEqualPos(Position b){
-//        return this.p == b.p;
-//    }
 }

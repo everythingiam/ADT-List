@@ -20,20 +20,21 @@ public class Postcard {
             this.adress[i] = x.adress[i];
         }
     }
-    
-//     //скопировать массивы
 
      //Метод проверяет, равны ли почтовые отправления (я называю карточки).
      //Нужен для того, чтобы в main сделать алогритм удаления дубликатов.
      public boolean isDataEqual(Postcard b){
         Postcard a = this;
-        for (int i = 0; i < a.name.length; i++) {
+        if (a.name.length != b.name.length || a.adress.length != b.adress.length){
+            return false;
+        }
+        for (int i = 0; i < name.length; i++) {
             if (a.name[i] != b.name[i]){
                 return false;
             }
         }
 
-        for (int i = 0; i < b.adress.length; i++) {
+        for (int i = 0; i < adress.length; i++) {
             if (a.adress[i] != b.adress[i]){
                 return false;
             }
