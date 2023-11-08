@@ -1,3 +1,3 @@
-## Lab1 5 semester
+## Labs 1-2, 5 semester
 less goooo
 
