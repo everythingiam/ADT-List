@@ -26,6 +26,16 @@ public class List {
         }
         return null;
     }
+    public boolean isInList(PostcardObject postcard){
+        PostcardObject current = head;
+        while (current != null){
+            if (postcard == current){
+                return true;
+            }
+            current = current.next;
+        }
+        return false;
+    }
     //Вставляет элемент х в позицию pos
     public void insert(Position pos, Postcard x){ //есть
         //проверка на наличие позиции
@@ -44,12 +54,12 @@ public class List {
             if (head == tail){
                 tail = tmp;
             } else{
-                head = tmp;
+                head.next.prev = tmp;
             }
             tmp.next = head.next;
             head.cardObject = x;
             tmp.prev = tail;
-            tail = tmp;
+            head.next = tmp;
             return;
         }
 
@@ -94,62 +104,73 @@ public class List {
             }
             current = current.next;
         }
-        return null;
+        return new Position(null);
     }
 
     public Postcard retrieve (Position pos){ //есть
 //        1. если есть позиция, то вернуть объект из нее
 //                2. если ее нет - выбросить исключение
-        PostcardObject previous = getPrevious(pos.p);
-        if (pos.p == head || pos.p == tail || previous != null){
+        if (isInList(pos.p)){
             return pos.p.cardObject;
-        }
+        } //здесь тоже нормальную порверук сделай
         throw new MyException("position is out of bounds");
     }
 
-    public Position delete (Position pos){
-//        1.Если позиции нет, вернуть объект из параметров
-//
+    public Position delete (Position pos){ //есть
+//        1.Если позиции нет
+        if (pos.p == null){
+            return pos;
+        }
+        if(!isInList(pos.p)){
+            return pos;
+        }
 //                удаление из головы
 //        1. если позиция голова, то
 //                2. если позивия еще и хвост, то удаляем единственный элемент (зануляем их)
 //        3. голова = голова.next
 //            4. предудщий за головой = null
 //                5. вернуть позицию головы
-
+        if (pos.p == head){
+            if (pos.p == tail){
+                head = null;
+                tail = null;
+                return new Position(null);
+            }
+            head = head.next;
+            head.prev = null;
+            return new Position(head);
+        }
 //        удаление с конца
 //                1. если позиция это хвост, то
 //                2. хвосту присваем ссылку на предыдущий
 //                3. а сылка на следующий null
 //                4. вернуть null
-
-//        если не существует
-//                если позиции нет, то вернуть ее
-
-//          в остальном варианте сдвигаем назад на ш????ажок и вощвращаем
-        if (pos.p == null){
-            return pos;
+        if (pos.p == tail){
+            tail = tail.prev;
+            tail.next = null;
+            return new Position(null);
         }
 
-        if (pos.p == head){
-            if (pos.p == tail){
-                head = null;
-                tail = null;
-            }
-            head = head.next;
-        }
-                return new Position(pos.p.prev);
+        pos.p.prev.next = pos.p.next;
+        pos.p.next.prev = pos.p.prev;
+        return new Position(pos.p.prev.next);
     }
     //Возвращает следующую за pos позицию
-    public Position next (Position pos){
+    public Position getNext (Position pos){ //есть
 //        1. если позиция есть, и
 //                2. если она еще и хвост, то вернуть пощицию в null
 //            3. иначе вернуть следующую позицию
-
+        if (isInList(pos.p)){
+            if (pos.p == tail){
+                return new Position(null);
+            } else
+            return new Position(pos.p.next);
+        }
+        //всё-таки поменять проверку с гетпревиус на просто изИнЛист
         throw new MyException("position out of bounds");
     }
 
-    public Position getPrevious(Position pos){
+    public Position getPrevious(Position pos){ //есть
         PostcardObject previous = getPrevious(pos.p);
         if (previous != null){
             return new Position(previous);
@@ -166,8 +187,7 @@ public class List {
     }
 
     //Возвращает первую позицию
-    public Position first(){ //есть
-
+    public Position getFirst(){ //есть
         return new Position(this.head);
     }
 

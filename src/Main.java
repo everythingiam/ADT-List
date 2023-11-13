@@ -1,7 +1,6 @@
-import arrayList1.*;
+//import arrayList1.*;
 //import linkedListList1.*;
-//import duoListList1.*;
-import org.w3c.dom.ls.LSOutput;
+import duoListList1.*;
 import postcard.Postcard;
 
 import java.sql.SQLOutput;
@@ -48,35 +47,35 @@ public class Main {
 
         System.out.println();
 
-//        Position p = L.getFirst();
-//        Position q;
-//
-//         while (!(L.arePosEqual(p, L.getEndL()))) {
-//             q = L.getNext(p);
-//             while (!L.arePosEqual(q, L.getEndL())) {
-//                 if (L.retrieve(p).isDataEqual(L.retrieve(q))){
-//                     q = L.delete(q);
-//                 } else {
-//                     q = L.getNext(q);
-//                 }
-//             }
-//             p = L.getNext(p);
-//         }
-//         L.print();
+        Position p = L.getFirst();
+        Position q;
+
+         while (!(L.arePosEqual(p, L.getEndL()))) {
+             q = L.getNext(p);
+             while (!L.arePosEqual(q, L.getEndL())) {
+                 if (L.retrieve(p).isDataEqual(L.retrieve(q))){
+                     q = L.delete(q);
+                 } else {
+                     q = L.getNext(q);
+                 }
+             }
+             p = L.getNext(p);
+         }
+         L.print();
 //
 //        System.out.println();
 //
 //        System.out.println("Проверки методов:");
-        L.insert(L.locate(kasha), babushka); //вставка в середину
+//        L.insert(L.locate(kasha), babushka); //вставка в середину
 //        L.insert(L.locate(kasha), babushka);
 //
-//        L.insert(L.getFirst(), tom); //вставка в начало самое (перед первым)
+        L.insert(L.getFirst(), tom); //вставка в начало самое (перед первым)
 //
         L.insert(L.getEndL(), dasha); //вставка в позицию после последнего
 
-//        L.insert(L.locate(dasha), tom); //вставка в последний элемент
-//
-//        L.print();
+        L.insert(L.locate(dasha), babushka); //вставка в последний элемент
+        System.out.println();
+        L.print();
 //        System.out.println();
 //        L.retrieve(L.locate(kasha)).print_postcard();
 //
@@ -91,8 +90,8 @@ public class Main {
 //        L.retrieve(L.locate(tom)).print_postcard();
 //        L.delete(L.locate(tom));
 //        L.delete(L.getEndL());
-        L.print();
-        System.out.println();
+//        L.print();
+//        System.out.println();
 
 //        L.insert(L.getNext(L.locate(dasha)), babushka);
 //        L.print();
