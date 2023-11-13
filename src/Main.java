@@ -1,7 +1,10 @@
-//import arrayList1.*;
-import linkedListList1.*;
+import arrayList1.*;
+//import linkedListList1.*;
 //import duoListList1.*;
+import org.w3c.dom.ls.LSOutput;
 import postcard.Postcard;
+
+import java.sql.SQLOutput;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 import java.io.File;
@@ -45,49 +48,61 @@ public class Main {
 
         System.out.println();
 
-        Position p = L.getFirst();
-        Position q;
-
-         while (!(L.arePosEqual(p, L.getEndL()))) {
-             q = L.getNext(p);
-             while (!L.arePosEqual(q, L.getEndL())) {
-                 if (L.retrieve(p).isDataEqual(L.retrieve(q))){
-                     q = L.delete(q);
-                 } else {
-                     q = L.getNext(q);
-                 }
-             }
-             p = L.getNext(p);
-         }
-         L.print();
-
-        System.out.println();
-
-        System.out.println("Проверки методов:");
+//        Position p = L.getFirst();
+//        Position q;
+//
+//         while (!(L.arePosEqual(p, L.getEndL()))) {
+//             q = L.getNext(p);
+//             while (!L.arePosEqual(q, L.getEndL())) {
+//                 if (L.retrieve(p).isDataEqual(L.retrieve(q))){
+//                     q = L.delete(q);
+//                 } else {
+//                     q = L.getNext(q);
+//                 }
+//             }
+//             p = L.getNext(p);
+//         }
+//         L.print();
+//
+//        System.out.println();
+//
+//        System.out.println("Проверки методов:");
         L.insert(L.locate(kasha), babushka); //вставка в середину
-        L.insert(L.locate(kasha), babushka);
-
-        L.insert(L.getFirst(), tom); //вставка в начало самое (перед первым)
-
+//        L.insert(L.locate(kasha), babushka);
+//
+//        L.insert(L.getFirst(), tom); //вставка в начало самое (перед первым)
+//
         L.insert(L.getEndL(), dasha); //вставка в позицию после последнего
 
-        L.insert(L.locate(dasha), tom); //вставка в последний элемент
-
+//        L.insert(L.locate(dasha), tom); //вставка в последний элемент
+//
+//        L.print();
+//        System.out.println();
+//        L.retrieve(L.locate(kasha)).print_postcard();
+//
+//        System.out.println();
+//        L.retrieve(L.getNext(L.locate(kasha))).print_postcard();
+//
+//        System.out.println();
+//
+//        System.out.println();
+//        L.retrieve(L.getFirst()).print_postcard();
+//
+//        L.retrieve(L.locate(tom)).print_postcard();
+//        L.delete(L.locate(tom));
+//        L.delete(L.getEndL());
         L.print();
         System.out.println();
-        L.retrieve(L.locate(kasha)).print_postcard();
 
-        System.out.println();
-        L.retrieve(L.getNext(L.locate(kasha))).print_postcard();
+//        L.insert(L.getNext(L.locate(dasha)), babushka);
+//        L.print();
+//        L.retrieve(L.getPrevious(L.getEndL())).print_postcard();
+//        L.retrieve(L.getPrevious(L.locate(babushka))).print_postcard();
+//        L.retrieve(L.getPrevious(L.getFirst())).print_postcard();
+//        L.retrieve(L.locate(tom)).print_postcard();
 
-        System.out.println();
-        L.retrieve(L.getLast()).print_postcard();
-
-        System.out.println();
-        L.retrieve(L.getFirst()).print_postcard();
-
-        System.out.println();
-        L.retrieve(L.getPrevious(L.locate(kasha))).print_postcard();
+//        L.retrieve(L.getEndL()).print_postcard();
 
     }
+
 }

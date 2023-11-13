@@ -49,7 +49,7 @@ public class List {
         // вернуть pos-1 с проверкой того, не выходит ли позиция за пределы массивa
         // если выходит - выбросить исключение.
         // и еще добавить проверку если элемент первый
-        if (pos.p > last + 1 || pos.p == 0)
+        if (pos.p > last || pos.p == 0)
             throw new MyException("Pos is out of bounds or list is empty");
         return new Position(pos.p - 1);
     }
@@ -72,7 +72,6 @@ public class List {
         last++;
         if (pos.p > last)
             return;
-
         for (int i = last; i > pos.p; i--) {
             postcards_list[i] = postcards_list[i - 1];
         }

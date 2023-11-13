@@ -3,6 +3,8 @@ package linkedListList1;
 import postcard.Postcard;
 import exception.MyException;
 
+import java.awt.*;
+
 public class List {
     private PostcardObject head; //массив
 
@@ -45,7 +47,7 @@ public class List {
         PostcardObject last = last();
         return new Position(last);
     }
-    //Возвращает последний элемент
+    //Возвращает ссылку на последний элемент
     private PostcardObject last() { //есть
         PostcardObject current = head;
         PostcardObject previous = null;
@@ -69,6 +71,7 @@ public class List {
         }
         return null;
     }
+
     //Возвращает позицию перед pos.
     public Position getPrevious(Position pos){ //есть
         // если такая позиция есть и она не первая, то
@@ -83,7 +86,7 @@ public class List {
         }
         throw new MyException("Position is out of bounds");
     }
-    
+
     //Возвращает элемент в позиции pos
     public Postcard retrieve(Position pos){ //есть
         //проверять наличием предыдущего элемента
@@ -98,6 +101,10 @@ public class List {
 
     //Вставляет элемент х в позицию pos
     public void insert(Position pos, Postcard x) { //есть
+        //проверка на наличие позиции
+        if (pos == null) {
+            return;
+        }
     //вставка в пустой лист
         if (head == null){
             head = new PostcardObject(x);
@@ -117,8 +124,10 @@ public class List {
             last.next = new PostcardObject(x);
             return;
         }
+        PostcardObject previous = getPrevious(pos.p);
+
         //вставка в середину
-        if (getPrevious(pos.p) != null) {
+        if (previous != null) {
             PostcardObject tmp = new PostcardObject(pos.p.cardObject);
             tmp.next = pos.p.next;
             pos.p.cardObject = x;
@@ -169,7 +178,7 @@ public class List {
             }
             current= current.next;
         }
-        return null;
+        return new Position(null);
     }
     public void print(){ //есть
         //проходимя по всему списку и печатаем поэлементно
