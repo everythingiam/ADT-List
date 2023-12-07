@@ -9,4 +9,7 @@ public class PostcardObject {
         cardObject = p;
         next = -1;
     }
+    public PostcardObject(int i){
+        next = i;
+    }
 }

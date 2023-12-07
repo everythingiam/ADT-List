@@ -3,7 +3,6 @@
 import duoListList1.*;
 import postcard.Postcard;
 
-import java.sql.SQLOutput;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 import java.io.File;
@@ -32,7 +31,7 @@ public class Main {
         //которую Андрей Сергеевич когда-то написал нам на доске
         //5. ну и печатаем обработанный результат L.print()
         List L = new List();
-        List.initCurosor();
+        List.initCursor();
         try {
             initFile(L,"File.txt");
         } catch (FileNotFoundException e) {
@@ -54,26 +53,27 @@ public class Main {
              q = L.getNext(p);
              while (!L.arePosEqual(q, L.getEndL())) {
                  if (L.retrieve(p).isDataEqual(L.retrieve(q))){
-                     q = L.delete(q);
+                     L.delete(q);
                  } else {
                      q = L.getNext(q);
                  }
              }
-             p = L.getNext(p);
+             p = L.getNext(p); //обращение к только что удаленному адресу может быть просто некст
          }
          L.print();
 //
 //        System.out.println();
 //
 //        System.out.println("Проверки методов:");
-//        L.insert(L.locate(kasha), babushka); //вставка в середину
+        L.insert(L.locate(kasha), babushka); //вставка в середину
 //        L.insert(L.locate(kasha), babushka);
 //
         L.insert(L.getFirst(), tom); //вставка в начало самое (перед первым)
+        L.delete(L.locate(kasha));
 //
-        L.insert(L.getEndL(), dasha); //вставка в позицию после последнего
+//        L.insert(L.getEndL(), dasha); //вставка в позицию после последнего
 
-        L.insert(L.locate(dasha), babushka); //вставка в последний элемент
+//        L.insert(L.locate(dasha), babushka); //вставка в последний элемент
         System.out.println();
         L.print();
 //        System.out.println();

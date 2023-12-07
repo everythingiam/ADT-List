@@ -6,14 +6,14 @@ import exception.MyException;
 import java.awt.*;
 
 public class List {
-    private PostcardObject head; //массив
+    private PostcardObject head;
 
     //конструктор, голова изначално
     public List(){
         head = null;
     }
 
-    public static void initCurosor(){
+    public static void initCursor(){
     }
     //Возвращает следующую за рos позицию
     public Position getNext(Position pos){ //есть
@@ -102,37 +102,35 @@ public class List {
     //Вставляет элемент х в позицию pos
     public void insert(Position pos, Postcard x) { //есть
         //проверка на наличие позиции
-        if (pos == null) {
-            return;
+        //вставка в позицию после последнего
+        //вставка в пустой лист
+
+        if (pos.p == null) {
+            if (head == null){
+                head = new PostcardObject(x);
+                return;
+            }
+            else {
+                PostcardObject last = last();
+                last.next = new PostcardObject(x);
+                return;
+            }
         }
-    //вставка в пустой лист
-        if (head == null){
-            head = new PostcardObject(x);
-            return;
-        }
+
         //вставка в голову
-        if (pos.p == head){
+        if (pos.p == head){ //1. если позиция после последнего. 2 варианта : когда хед равен нулл, и когда не равен
             PostcardObject tmp = new PostcardObject((head.cardObject));
             tmp.next = head.next;
             head.cardObject = x;
             head.next = tmp;
             return;
         }
-        //вставка в позицию после последнего
-        if (pos.p == null){
-            PostcardObject last = last();
-            last.next = new PostcardObject(x);
-            return;
-        }
-        PostcardObject previous = getPrevious(pos.p);
 
         //вставка в середину
-        if (previous != null) {
             PostcardObject tmp = new PostcardObject(pos.p.cardObject);
             tmp.next = pos.p.next;
             pos.p.cardObject = x;
             pos.p.next = tmp;
-        }
     }
 
     //Делает список пустым
@@ -142,25 +140,24 @@ public class List {
 
     
     //Удаляет элемент в позиции pos
-    public Position delete(Position pos){ //есть
-        //если позиции нет
-        if (pos.p == null)
-            return pos;
+    public void delete(Position pos){ //есть
+        //если позиции нет или список пуст
+        if (pos.p == null || head == null)
+            return;
         //удалить из головы
         if (pos.p == head){
             head = head.next;
-            return new Position(head);
+            return;
         }
 
         //если позиция не в списке
         PostcardObject previous = getPrevious(pos.p);
-        if (previous == null) {
-            return pos;
+        if (previous == null){
+            return;
         }
-
-        //удаление из конца или середины
+        //удаление с конца или середины
         previous.next = pos.p.next;
-        return new Position(previous.next);
+        pos.p = pos.p.next;
     }
     public boolean arePosEqual(Position a, Position b){
         return a.p == b.p;

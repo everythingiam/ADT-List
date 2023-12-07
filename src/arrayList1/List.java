@@ -12,7 +12,7 @@ public class List {
         last = -1;
     }
 
-    public static void initCurosor(){
+    public static void initCursor(){
     }
 
     //Возвращает следующую за рos позицию
@@ -85,7 +85,7 @@ public class List {
     }
 
     //Удаляет элемент в позиции pos
-    public Position delete(Position pos){ //есть
+    public void delete(Position pos){ //есть
         // если позиции нет - ничего не делать
         // в цикле от pos до конца сдвинуть все элементы на 1 назад
         // уменьшить last на 1
@@ -95,7 +95,6 @@ public class List {
             }
             last--;
         }
-        return pos;
     }
 
     //Возвращает позицию

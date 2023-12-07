@@ -11,7 +11,7 @@ public class List {
         return new Position(null);
     }
 
-    public static void initCurosor(){
+    public static void initCursor(){
     }
 
     public PostcardObject getPrevious(PostcardObject postcard){ //есть
@@ -58,7 +58,6 @@ public class List {
             }
             tmp.next = head.next;
             head.cardObject = x;
-            tmp.prev = tail;
             head.next = tmp;
             return;
         }
@@ -116,13 +115,10 @@ public class List {
         throw new MyException("position is out of bounds");
     }
 
-    public Position delete (Position pos){ //есть
+    public void delete (Position pos){ //есть
 //        1.Если позиции нет
-        if (pos.p == null){
-            return pos;
-        }
-        if(!isInList(pos.p)){
-            return pos;
+        if (pos.p == null || !isInList(pos.p)){
+            return;
         }
 //                удаление из головы
 //        1. если позиция голова, то
@@ -134,11 +130,11 @@ public class List {
             if (pos.p == tail){
                 head = null;
                 tail = null;
-                return new Position(null);
+                return;
             }
             head = head.next;
             head.prev = null;
-            return new Position(head);
+            return;
         }
 //        удаление с конца
 //                1. если позиция это хвост, то
@@ -148,12 +144,12 @@ public class List {
         if (pos.p == tail){
             tail = tail.prev;
             tail.next = null;
-            return new Position(null);
+            return;
         }
 
         pos.p.prev.next = pos.p.next;
         pos.p.next.prev = pos.p.prev;
-        return new Position(pos.p.prev.next);
+        pos.p = pos.p.next;
     }
     //Возвращает следующую за pos позицию
     public Position getNext (Position pos){ //есть
