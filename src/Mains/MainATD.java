@@ -1,3 +1,4 @@
+package Mains;
 //import arrayList1.*;
 //import linkedListList1.*;
 import duoListList1.*;
@@ -8,7 +9,7 @@ import java.util.regex.Pattern;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-public class Main {
+public class MainATD {
     public static void initFile(List L, String filePath) throws FileNotFoundException {
         File file = new File(filePath);
         Scanner scan = new Scanner(file);
