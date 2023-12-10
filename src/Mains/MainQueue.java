@@ -1,6 +1,6 @@
 package Mains;
-import queueArray.Queue;
-//import queueRingLinkedList.Queue;
+//import queueArray.Queue;
+import queueRingLinkedList.Queue;
 //import queueADTList.Queue;
 import postcard.Postcard;
 
@@ -15,6 +15,7 @@ public class MainQueue {
        Q.enqueue(tom);
        Q.enqueue(babushka);
        Q.enqueue(kasha);
+
         System.out.println();
         Q.print();
         System.out.println();

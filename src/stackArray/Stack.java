@@ -43,6 +43,11 @@ public class Stack {
     }
 
     public void print(){ //есть
+        if (empty()) {
+            System.out.println("Stack is empty");
+            return;
+        }
+
         for (int i = last; i >= 0; i--) {
             postcard_list[i].cardObject.print_postcard();
         }

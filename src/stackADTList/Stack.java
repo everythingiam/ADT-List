@@ -43,6 +43,10 @@ public class Stack {
         return false;
     }
     public void print(){
+        if (empty()) {
+            System.out.println("Stack is empty");
+            return;
+        }
         L.print();
     }
     //    S – стек, x – элемент.

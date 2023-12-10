@@ -52,18 +52,16 @@ public class Queue {
     }
 
     public boolean empty(){
-        if (count == 0){
-            return true;
-        }
-        return false;
+        return count == 0;
     }
     public boolean full(){
-        if (count >= MAX){
-            return true;
-        }
-        return false;
+        return count >= MAX;
     }
     public void print(){
+        if (empty()) {
+            System.out.println("Queue is empty");
+            return;
+        }
         for (int i = first; i <= last; i++) {
             postcard_list[i].cardObject.print_postcard();
         }

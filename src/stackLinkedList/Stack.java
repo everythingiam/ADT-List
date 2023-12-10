@@ -20,7 +20,7 @@ public class Stack {
         return head == null;
     }
     public boolean full(){
-        return count == MAX;
+        return count >= MAX;
     }
     public Postcard top(){ //есть
         if (empty()){
@@ -52,6 +52,11 @@ public class Stack {
     }
 
     public void print(){ //есть
+        if (empty()) {
+            System.out.println("Stack is empty");
+            return;
+        }
+
         PostcardObject current = head;
         while (current != null){
             current.cardObject.print_postcard();
