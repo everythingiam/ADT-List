@@ -58,6 +58,7 @@ public class Postcard {
         for (int i = 0; i < adress.length; i++) {
             System.out.print(adress[i]);
         }
+        System.out.println();
     }
 
     }

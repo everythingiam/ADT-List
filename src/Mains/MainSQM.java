@@ -1,5 +1,6 @@
 package Mains;
-import stackArray.Stack;
+//import stackArray.Stack;
+import stackLinkedList.Stack;
 import postcard.Postcard;
 
 public class MainSQM {
@@ -10,28 +11,26 @@ public class MainSQM {
         Postcard dasha = new Postcard(new char[]{'D', 'a', 's', 'h', 'a'}, new char[]{'N', 'e', 'w', '-', 'Y', 'o', 'r', 'k'});
 
         Stack S = new Stack();
-//        S.empty();
-//        S.full();
+
         S.push(tom);
         S.push(babushka);
+        S.push(kasha);
         S.print();
         System.out.println();
         S.top().print_postcard();
-        S.push(dasha);
-        System.out.println();
-        S.empty();
+//        S.push(dasha);
+//        S.empty();
         S.full();
-
-        System.out.println();
-        S.print();
+//
+//        System.out.println();
+//        S.print();
         System.out.println();
         S.pop().print_postcard();
         System.out.println();
-        System.out.println();
         S.print();
-        System.out.println();
-
-        S.makeNull();
-        S.empty();
+//        System.out.println();
+//
+//        S.makeNull();
+//        S.empty();
     }
 }
