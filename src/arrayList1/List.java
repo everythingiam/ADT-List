@@ -116,7 +116,6 @@ public class List {
         // ну к каждому элементу приписать print_postcard()
         for (int i = 0; i <= last; i++) {
             postcards_list[i].cardObject.print_postcard();
-            System.out.println();
         }
     }
     //Проверяет две позиции на равенство

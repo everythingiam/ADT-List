@@ -1,6 +1,7 @@
 package Mains;
-import stackArray.Stack;
+//import stackArray.Stack;
 //import stackLinkedList.Stack;
+import stackADTList.Stack;
 import postcard.Postcard;
 
 public class MainSQM {
@@ -20,7 +21,7 @@ public class MainSQM {
         S.top().print_postcard();
 //        S.push(dasha);
 //        S.empty();
-        S.full();
+//        S.full();
 //
 //        System.out.println();
 //        S.print();

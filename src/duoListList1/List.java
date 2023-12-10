@@ -193,7 +193,6 @@ public class List {
         while (current != null) {
             current.cardObject.print_postcard();
             current = current.next;
-            System.out.println();
         }
 
     }
