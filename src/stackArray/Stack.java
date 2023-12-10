@@ -17,14 +17,14 @@ public class Stack {
     }
 
     public Postcard top(){ //есть
-        if (last == -1){
+        if (empty()){
             throw new MyException("Stack is empty");
         }
         return postcard_list[last].cardObject;
     }
 
     public Postcard pop(){ //есть
-        if (last == -1){
+        if (empty()){
             throw new MyException("Stack is empty");
         }
         last--;

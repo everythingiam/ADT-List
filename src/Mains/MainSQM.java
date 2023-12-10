@@ -1,7 +1,7 @@
 package Mains;
 //import stackArray.Stack;
-//import stackLinkedList.Stack;
-import stackADTList.Stack;
+import stackLinkedList.Stack;
+//import stackADTList.Stack;
 import postcard.Postcard;
 
 public class MainSQM {

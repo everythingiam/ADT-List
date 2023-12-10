@@ -23,10 +23,16 @@ public class Stack {
         return count == MAX;
     }
     public Postcard top(){ //есть
+        if (empty()){
+            throw new MyException("Stack is empty");
+        }
         return head.cardObject;
     }
 
    public Postcard pop(){ //есть
+       if (empty()){
+           throw new MyException("Stack is empty");
+       }
         PostcardObject tmp = head;
         head = head.next;
         count--;

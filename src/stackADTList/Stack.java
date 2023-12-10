@@ -19,9 +19,15 @@ public class Stack {
         L.makeNull();
     }
     public Postcard top(){
+        if (empty()){
+            throw new MyException("Stack is empty");
+        }
         return L.retrieve(L.getFirst());
     }
     public Postcard pop(){
+        if (empty()){
+            throw new MyException("Stack is empty");
+        }
         Postcard tmp = L.retrieve(L.getFirst());
         L.delete(L.getFirst());
         return tmp;
