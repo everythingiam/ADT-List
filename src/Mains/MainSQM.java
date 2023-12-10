@@ -1,6 +1,6 @@
 package Mains;
-//import stackArray.Stack;
-import stackLinkedList.Stack;
+import stackArray.Stack;
+//import stackLinkedList.Stack;
 import postcard.Postcard;
 
 public class MainSQM {

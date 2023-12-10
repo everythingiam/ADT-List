@@ -17,23 +17,10 @@ public class Stack {
         count = 0;
     }
     public boolean empty(){ //есть
-        if (head == null){
-            System.out.println("yes it is empty");
-            return true;
-        }
-        System.out.println("no it is not empty");
-        return false;
-
-        //return head == null - короткая форма
+        return head == null;
     }
     public boolean full(){
-        if (count >= MAX){
-            System.out.println("yes it is full");
-            return true;
-        }
-        System.out.println("no it is not full");
-        return false;
-//        return count == MAX; - краткая форма
+        return count == MAX;
     }
     public Postcard top(){ //есть
         return head.cardObject;
@@ -63,7 +50,6 @@ public class Stack {
         while (current != null){
             current.cardObject.print_postcard();
             current = current.next;
-            System.out.println();
         }
     }
 

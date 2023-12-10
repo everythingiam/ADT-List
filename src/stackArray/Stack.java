@@ -6,10 +6,11 @@ import exception.MyException;
 public class Stack {
     private PostcardObject[] postcard_list;
     private int last;
+    private int MAX = 10;
 
     public Stack(){
         last = -1;
-        postcard_list = new PostcardObject[10];
+        postcard_list = new PostcardObject[MAX];
     }
     public void makeNull(){ //есть
         last = -1;
@@ -31,30 +32,18 @@ public class Stack {
     }
 
     public void push(Postcard x){ //есть
-        last++;
-        postcard_list[last] = new PostcardObject(x);
+        postcard_list[++last] = new PostcardObject(x);
     }
     public boolean empty(){ //есть
-        if (last == -1){
-            System.out.println("yes it is empty");
-            return true;
-        }
-        System.out.println("no it is not empty");
-        return false;
+        return last == -1;
     }
     public boolean full(){ //есть
-        if (last == postcard_list.length - 1){
-            System.out.println("yes it is full");
-            return true;
-        }
-        System.out.println("no it is not full");
-        return false;
+        return last >= postcard_list.length - 1;
     }
 
     public void print(){ //есть
-        for (int i = 0; i <= last; i++) {
+        for (int i = last; i >= 0; i--) {
             postcard_list[i].cardObject.print_postcard();
-            System.out.println();
         }
     }
 //    S – стек, x – элемент.
