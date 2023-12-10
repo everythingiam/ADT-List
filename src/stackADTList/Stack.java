@@ -10,13 +10,17 @@ import exception.MyException;
 public class Stack {
 
     private List L;
+    private int count;
+    private int MAX = 10;
     public Stack(){
         L = new List();
         L.initCursor();
+        count = 0;
     }
 
     public void makeNull(){
         L.makeNull();
+        count = 0;
     }
     public Postcard top(){
         if (empty()){
@@ -30,17 +34,21 @@ public class Stack {
         }
         Postcard tmp = L.retrieve(L.getFirst());
         L.delete(L.getFirst());
+        count--;
         return tmp;
     }
     public void push(Postcard x){
         L.insert(L.getFirst(), x);
+        count++;
     }
     public boolean empty() {
-        return L.getFirst().equals(L.getEndL());
+        return count == 0;
+        //return L.getFirst().equals(L.getEndL());
     }
 
     public boolean full(){
-        return false;
+
+        return count >= MAX;
     }
     public void print(){
         if (empty()) {
