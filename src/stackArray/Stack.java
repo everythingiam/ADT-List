@@ -27,8 +27,9 @@ public class Stack {
         if (empty()){
             throw new MyException("Stack is empty");
         }
+        PostcardObject tmp = postcard_list[last];
         last--;
-        return postcard_list[last+1].cardObject;
+        return tmp.cardObject;
     }
 
     public void push(Postcard x){ //есть

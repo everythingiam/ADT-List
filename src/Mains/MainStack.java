@@ -4,7 +4,7 @@ import stackLinkedList.Stack;
 //import stackADTList.Stack;
 import postcard.Postcard;
 
-public class MainSQM {
+public class MainStack {
     public static void main(String[] args) {
         Postcard tom = new Postcard(new char[]{'T', 'o', 'm'}, new char[]{'I', 'T', 'M', 'O'});
         Postcard babushka = new Postcard(new char[]{'b', 'a', 'b', 'u', 's', 'h', 'k', 'a'}, new char[]{'N', 'e', 'w', '-', 'Y', 'o', 'r', 'k'});
