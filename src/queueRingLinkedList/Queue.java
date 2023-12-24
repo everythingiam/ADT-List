@@ -5,68 +5,50 @@ import linkedListList1.PostcardObject;
 import exception.MyException;
 
 public class Queue {
-    PostcardObject head;
+
     PostcardObject tail;
-    private int count = 0;
-    private int MAX = 10;
+
     public Queue(){
-        head = null;
-        tail = null;
+        tail = null; //ссылаться сразу на элемент, голову убрать !!!
     }
 
     public void makeNull(){
-        head = null;
         tail = null;
-        count = 0;
     }
 
     public Postcard front(){
-        if (empty()){
-            throw new MyException("Stack is empty");
-        }
-        return head.cardObject;
+        return tail.next.cardObject;
     }
     public void enqueue(Postcard x){
-        PostcardObject xx = new PostcardObject(x);
-        if (empty()) {
-            xx.next = xx;
-            head = xx;
-            tail = xx;
+        if (tail == null){
+            tail = new PostcardObject(x);
+            tail.next = tail;
         } else {
-            tail.next = xx; // связываем текущий последний элемент с новым узлом
-            xx.next = head; // новый узел теперь становится последним и связывается с головой
-            tail = xx; // обновляем указатель на последний элемент
+            PostcardObject tmp = new PostcardObject(x);
+            tmp.next = tail.next;
+            tail.next = tmp;
+            tail = tmp;
         }
 
-        count++;
     }
     public Postcard dequeue(){
-        if (empty()){
-            throw new MyException("Stack is empty");
+        PostcardObject tmp = tail.next;
+        if (tail.next == tail){
+            tail = null;
+        } else {
+            tail.next = tail.next.next;
         }
-        PostcardObject tmp = head;
-        head = head.next;
-        tail.next = head;
-        count--;
         return tmp.cardObject;
     }
 
     public boolean empty(){
-        return head == null;
+        return tail == null;
     }
     public boolean full(){
-        return count >= MAX;
+        return false;
     }
     public void print(){
-        if (empty()) {
-            System.out.println("Queue is empty");
-            return;
-        }
-        PostcardObject current = head;
-        do {
-            current.cardObject.print_postcard();
-            current = current.next;
-        } while (current != head);
+
     }
     //    MAKENULL(Q) – очищает очередь Q, делая ее пустой.
 //            FRONT(Q) – возвращает первый элемент (копия) очереди Q.

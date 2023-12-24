@@ -1,12 +1,9 @@
 package stackLinkedList;
 import postcard.Postcard;
 import linkedListList1.PostcardObject;
-import exception.MyException;
 
 public class Stack {
     private PostcardObject head;
-    private int count = 0;
-    private int MAX = 10;
 
     public Stack(){
         head = null;
@@ -14,49 +11,29 @@ public class Stack {
 
     public void makeNull(){ //есть
         head = null;
-        count = 0;
     }
     public boolean empty(){ //есть
         return head == null;
     }
     public boolean full(){
-        return count >= MAX;
+        return false;
     }
     public Postcard top(){ //есть
-        if (empty()){
-            throw new MyException("Stack is empty");
-        }
         return head.cardObject;
     }
 
    public Postcard pop(){ //есть
-       if (empty()){
-           throw new MyException("Stack is empty");
-       }
         PostcardObject tmp = head;
         head = head.next;
-        count--;
         return tmp.cardObject;
    }
     public void push(Postcard x){ //есть
-//        if (head == null){
-//            head = new PostcardObject(x);
-//            return;
-//        }
         PostcardObject obj = new PostcardObject(x);
-
         obj.next = head;
         head = obj;
-
-        count++;
     }
 
     public void print(){ //есть
-        if (empty()) {
-            System.out.println("Stack is empty");
-            return;
-        }
-
         PostcardObject current = head;
         while (current != null){
             current.cardObject.print_postcard();

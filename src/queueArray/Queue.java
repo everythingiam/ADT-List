@@ -6,62 +6,39 @@ import exception.MyException;
 public class Queue {
     private int last;
     private int first;
-    private int count;
     private PostcardObject[] postcard_list;
-    private int MAX = 20;
+
 
     public Queue(){
-        postcard_list = new PostcardObject[MAX];
-        last = -1;
+        postcard_list = new PostcardObject[20];
+        last = postcard_list.length - 1;
         first = 0;
-        count = 0;
     }
 
     public void makeNull(){
-        last = -1;
+        last = postcard_list.length - 1; //ласт МАКС - 1
         first = 0;
-        count = 0;
     }
     public Postcard front(){
-        if (empty()){
-            throw new MyException("Queue is empty");
-        }
-
         return postcard_list[first].cardObject;
     }
     public Postcard dequeue(){ //извлечь из начала очереди
-        if (empty()){
-            throw new MyException("Queue is empty");
-        }
-        PostcardObject tmp = postcard_list[first++];
-
-        if (first == MAX) { //циклический перенос
-            first = 0;
-        }
-        count--;
+        PostcardObject tmp = postcard_list[first];
+        first++;
         return tmp.cardObject;
     }
     public void enqueue(Postcard x){ //добавить в конец очереди
-        if (last == MAX - 1){ //циклический перенос
-            last = -1;
-        }
         last++;
-
         postcard_list[last] = new PostcardObject(x);
-        count++;
     }
 
     public boolean empty(){
-        return count == 0;
+        return last == -1;
     }
     public boolean full(){
-        return count >= MAX;
+        return postcard_list.length == last - 1;
     }
     public void print(){
-        if (empty()) {
-            System.out.println("Queue is empty");
-            return;
-        }
         for (int i = first; i <= last; i++) {
             postcard_list[i].cardObject.print_postcard();
         }

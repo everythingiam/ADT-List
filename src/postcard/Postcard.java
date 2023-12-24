@@ -61,4 +61,17 @@ public class Postcard {
         System.out.println();
     }
 
+    public boolean equalToName(char[] array){
+        Postcard a = this;
+        if (a.name.length != array.length){
+            return false;
+        }
+        for (int i = 0; i < name.length; i++) {
+            if (a.name[i] != array[i]){
+                return false;
+            }
+        }
+        return true;
+    }
+
     }

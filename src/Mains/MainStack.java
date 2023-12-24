@@ -12,7 +12,7 @@ public class MainStack {
         Postcard dasha = new Postcard(new char[]{'D', 'a', 's', 'h', 'a'}, new char[]{'N', 'e', 'w', '-', 'Y', 'o', 'r', 'k'});
 
         Stack S = new Stack();
-
+//проверять на вставку
         S.push(tom);
         S.push(babushka);
         S.push(kasha);

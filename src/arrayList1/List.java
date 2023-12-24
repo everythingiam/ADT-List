@@ -19,7 +19,7 @@ public class List {
     public Position getNext(Position pos){ //есть
         // вернуть p+1 с проверкой того, не выходит ли позиция за пределы массива.
         // если выходит - выбросить исключение.
-        if (pos.p > last){
+        if (noPosition(pos)){
             throw new MyException("Pos is out of bounds!!!");
         }
         return new Position(pos.p + 1);
@@ -49,7 +49,7 @@ public class List {
         // вернуть pos-1 с проверкой того, не выходит ли позиция за пределы массивa
         // если выходит - выбросить исключение.
         // и еще добавить проверку если элемент первый
-        if (pos.p > last || pos.p == 0)
+        if (noPosition(pos))
             throw new MyException("Pos is out of bounds or list is empty");
         return new Position(pos.p - 1);
     }
@@ -58,7 +58,7 @@ public class List {
     public Postcard retrieve(Position pos){ //есть
         //вернуть элемент из списка в позиции pos
         //если позиции нет, выбросить исключение
-        if (pos.p > last)
+        if (noPosition(pos))
             throw new MyException("Pos is out of bounds!!!");
         return postcards_list[pos.p].cardObject;
     }
@@ -70,7 +70,7 @@ public class List {
         // все элементы сдвинуть с конца вправо
         // и когда сдвинутся, вставить х в позицию pos
         last++;
-        if (pos.p > last)
+        if (noPosition(pos))
             return;
         for (int i = last; i > pos.p; i--) {
             postcards_list[i] = postcards_list[i - 1];
@@ -89,12 +89,13 @@ public class List {
         // если позиции нет - ничего не делать
         // в цикле от pos до конца сдвинуть все элементы на 1 назад
         // уменьшить last на 1
-        if (pos.p < last + 1){
-            for (int i = pos.p + 1; i <= last ; i++) {
-                postcards_list[i-1] = postcards_list[i];
-            }
-            last--;
+        if (noPosition(pos)){
+            throw new MyException("Pos is out of bounds!!!");
         }
+        for (int i = pos.p + 1; i <= last ; i++) {
+            postcards_list[i-1] = postcards_list[i];
+        }
+        last--;
     }
 
     //Возвращает позицию
@@ -118,9 +119,9 @@ public class List {
             postcards_list[i].cardObject.print_postcard();
         }
     }
-    //Проверяет две позиции на равенство
-    public boolean arePosEqual(Position a, Position b){
-        return a.p == b.p;
+
+    private boolean noPosition(Position pos){
+        return pos.p > last;
     }
 
 }

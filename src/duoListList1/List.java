@@ -14,18 +14,7 @@ public class List {
     public static void initCursor(){
     }
 
-    public PostcardObject getPrevious(PostcardObject postcard){ //есть
-        PostcardObject current = head;
-        PostcardObject previous = null;
-        while (current != null){
-            if (postcard == current){
-                return previous;
-            }
-            previous = current;
-            current = current.next;
-        }
-        return null;
-    }
+    //Проверяет, есть ли в списке карточка
     public boolean isInList(PostcardObject postcard){
         PostcardObject current = head;
         while (current != null){
@@ -58,6 +47,7 @@ public class List {
             }
             tmp.next = head.next;
             head.cardObject = x;
+            tmp.prev = head;
             head.next = tmp;
             return;
         }
@@ -81,9 +71,8 @@ public class List {
             return;
         }
 
-        PostcardObject previous = getPrevious(pos.p);
         //вставка в середину
-        if (previous != null){
+        if (isInList(pos.p)){
             PostcardObject tmp = new PostcardObject(pos.p.cardObject);
             tmp.next = pos.p.next;
             tmp.prev = pos.p;
@@ -144,6 +133,7 @@ public class List {
         if (pos.p == tail){
             tail = tail.prev;
             tail.next = null;
+            pos.p = pos.p.next;
             return;
         }
 
@@ -166,10 +156,12 @@ public class List {
         throw new MyException("position out of bounds");
     }
 
+    //Возвращает позицию предыдущего
     public Position getPrevious(Position pos){ //есть
-        PostcardObject previous = getPrevious(pos.p);
-        if (previous != null){
-            return new Position(previous);
+        if (isInList(pos.p)){
+            if (pos.p.prev != null){
+                return new Position(pos.p.prev);
+            }
         }
 //        1. если позивия есть, и
 //                2. если предыдущая за ней не null, то вернуть предыдущую позицию
@@ -196,7 +188,5 @@ public class List {
         }
 
     }
-    public boolean arePosEqual(Position a, Position b){
-        return a.p == b.p;
-    }
+
 }

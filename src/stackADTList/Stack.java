@@ -8,53 +8,36 @@ import linkedListList1.*;
 import exception.MyException;
 
 public class Stack {
-
+ //убрать каунт
     private List L;
-    private int count;
-    private int MAX = 10;
+
     public Stack(){
         L = new List();
         L.initCursor();
-        count = 0;
     }
 
     public void makeNull(){
         L.makeNull();
-        count = 0;
     }
     public Postcard top(){
-        if (empty()){
-            throw new MyException("Stack is empty");
-        }
         return L.retrieve(L.getFirst());
     }
     public Postcard pop(){
-        if (empty()){
-            throw new MyException("Stack is empty");
-        }
         Postcard tmp = L.retrieve(L.getFirst());
         L.delete(L.getFirst());
-        count--;
         return tmp;
     }
     public void push(Postcard x){
         L.insert(L.getFirst(), x);
-        count++;
     }
     public boolean empty() {
-        return count == 0;
-        //return L.getFirst().equals(L.getEndL());
+        return L.getFirst().equals(L.getEndL());
     }
 
     public boolean full(){
-
-        return count >= MAX;
+        return false;
     }
     public void print(){
-        if (empty()) {
-            System.out.println("Stack is empty");
-            return;
-        }
         L.print();
     }
     //    S – стек, x – элемент.

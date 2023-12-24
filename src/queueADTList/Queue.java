@@ -5,20 +5,15 @@ import linkedListList1.*;
 //import arrayList1.*;
 //import cursorList1.*;
 //import duoListList1.*;
-import exception.MyException;
 
 public class Queue {
     private List L;
-    private int count;
-    private int MAX = 10;
     public Queue(){
         L = new List();
         L.initCursor();
-        count = 0;
     }
     public void makeNull(){
         L.makeNull();
-        count = 0;
     }
     public Postcard front(){
         return L.retrieve(L.getFirst());
@@ -26,21 +21,16 @@ public class Queue {
 
     public void enqueue(Postcard x){
         L.insert(L.getEndL(), x);
-        count++;
     }
     public Postcard dequeue(){
         Postcard tmp = L.retrieve(L.getFirst());
         L.delete(L.getFirst());
-        count--;
         return tmp;
     }
-    public boolean empty(){
-        return count == 0;
-        //return L.getFirst().equals(L.getEndL());
-
+    public boolean empty(){return L.getFirst().equals(L.getEndL());
     }
     public boolean full(){
-        return count >= MAX;
+        return false;
     }
     public void print(){
         L.print();

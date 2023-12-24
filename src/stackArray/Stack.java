@@ -6,27 +6,20 @@ import exception.MyException;
 public class Stack {
     private PostcardObject[] postcard_list;
     private int last;
-    private int MAX = 10;
 
     public Stack(){
         last = -1;
-        postcard_list = new PostcardObject[MAX];
+        postcard_list = new PostcardObject[20];
     }
     public void makeNull(){ //есть
         last = -1;
     }
 
     public Postcard top(){ //есть
-        if (empty()){
-            throw new MyException("Stack is empty");
-        }
         return postcard_list[last].cardObject;
     }
 
     public Postcard pop(){ //есть
-        if (empty()){
-            throw new MyException("Stack is empty");
-        }
         PostcardObject tmp = postcard_list[last];
         last--;
         return tmp.cardObject;
@@ -39,15 +32,10 @@ public class Stack {
         return last == -1;
     }
     public boolean full(){ //есть
-        return last >= postcard_list.length - 1;
+        return last == postcard_list.length - 1;
     }
 
     public void print(){ //есть
-        if (empty()) {
-            System.out.println("Stack is empty");
-            return;
-        }
-
         for (int i = last; i >= 0; i--) {
             postcard_list[i].cardObject.print_postcard();
         }

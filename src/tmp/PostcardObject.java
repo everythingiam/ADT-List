@@ -1,4 +1,4 @@
-package cursorList1;
+package tmp;
 import postcard.Postcard;
 
 public class PostcardObject {

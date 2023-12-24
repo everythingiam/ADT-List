@@ -42,11 +42,7 @@ public class List {
         return new Position(this.head);
     }
 
-    //Возвращает последнюю позицию
-    public Position getLast(){
-        PostcardObject last = last();
-        return new Position(last);
-    }
+
     //Возвращает ссылку на последний элемент
     private PostcardObject last() { //есть
         PostcardObject current = head;
@@ -59,7 +55,7 @@ public class List {
     }
 
     //Возвращает предыдущий элемент для переданного в параметнр
-    public PostcardObject getPrevious(PostcardObject postcard){ //есть
+    private PostcardObject getPrevious(PostcardObject postcard){ //есть
         PostcardObject previous = null;
         PostcardObject current = head;
         while (current != null){
@@ -158,9 +154,6 @@ public class List {
         //удаление с конца или середины
         previous.next = pos.p.next;
         pos.p = pos.p.next;
-    }
-    public boolean arePosEqual(Position a, Position b){
-        return a.p == b.p;
     }
 
     //Возвращает позицию

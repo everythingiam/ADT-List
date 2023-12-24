@@ -8,5 +8,10 @@ public class Position {
     public Position(PostcardObject position){
         this.p = position;
     }
+
+    //Проверяет две позиции на равенство
+    public boolean arePosEqual(Position b){
+        return this.p == b.p;
+    }
 }
 
