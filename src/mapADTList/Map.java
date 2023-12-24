@@ -42,8 +42,15 @@ public class Map {
         //3. если нет, то создаю новую карточку просто и пихаю в начало
     }
 
-    public void compute(char[] d, char[] r){
-
+    //Область определения d - имя
+    //Область значений r - адрес
+    public boolean compute(char[] d, char[] r){
+        Position locatedD = locateD(d);
+        if (locatedD != null){
+            r = L.retrieve(locatedD).adress; //сделать отдельно метод копирования массива в r
+            return true;
+        }
+        return false;
     }
 
     public void print(){

@@ -1,8 +1,7 @@
 package Mains;
-//import postcard.Postcard;
-import mapADTList.Map;
 import postcard.Postcard;
-
+//import mapADTList.Map;
+import mapLinkedList.*;
 public class MainMap {
     public static void main(String[] args) {
         Map M = new Map();
@@ -12,6 +11,7 @@ public class MainMap {
         Postcard dasha = new Postcard(new char[]{'D', 'a', 's', 'h', 'a'}, new char[]{'M', 'o', 's', 'c', 'o', 'w'});
         M.assign(tom.name, kasha.adress);
         M.assign(tom.name, dasha.adress);
+//        System.out.println(M.compute(kasha.name, tom.adress));
         M.print();
     }
 }

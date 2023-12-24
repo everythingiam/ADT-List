@@ -23,7 +23,7 @@ public class List {
         int prev = -1;
         int current = head;
         while (current != -1) {
-            if (postcard_list[current].equals(postcard_list[necessary])) {
+            if (postcard_list[current].cardObject.isDataEqual(postcard_list[necessary].cardObject)) {
                 return prev;
             }
             prev = current;
