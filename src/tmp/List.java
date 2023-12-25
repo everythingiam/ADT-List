@@ -6,7 +6,7 @@ public class List {
     private static int SPACE;
     private int head;
 
-    public static void initCursor() {
+    public static void initCursor() { //инициализация
         postcard_list = new PostcardObject[50];
         SPACE = 0;
         for (int i = 0; i < postcard_list.length - 1; i++) {
@@ -19,11 +19,11 @@ public class List {
         head = -1;
     }
 
-    private int previous(int necessary) {
+    private int previous(int pos) {
         int prev = -1;
         int current = head;
         while (current != -1) {
-            if (postcard_list[current].cardObject.isDataEqual(postcard_list[necessary].cardObject)) {
+            if (postcard_list[current].cardObject.isDataEqual(postcard_list[pos].cardObject)) {
                 return prev;
             }
             prev = current;
@@ -46,13 +46,15 @@ public class List {
         return new Position(postcard_list.length - 1);
     }
 
-    public void insert(Position position, Postcard x) {
+    public void insert(Position position, Postcard x) { // вставляет х в позицию р
+        //вставка в пустой список
         if (head == -1) {
             head = SPACE;
             SPACE = postcard_list[SPACE].next;
             postcard_list[head] = new PostcardObject(x);
             return;
         }
+        //вставка в голову
         if (position.p == head) {
             int pos = SPACE;
             SPACE = postcard_list[SPACE].next;
@@ -61,6 +63,7 @@ public class List {
             postcard_list[head].next = pos;
             return;
         }
+        //вставка в конец
         if (position.p == -1) {
             int pos = SPACE;
             SPACE = postcard_list[SPACE].next;
@@ -69,6 +72,7 @@ public class List {
             postcard_list[prev].next = pos;
             return;
         }
+        //в середину
         if (previous(position.p) != -1) {
             int pos = SPACE;
             SPACE = postcard_list[SPACE].next;
@@ -79,11 +83,10 @@ public class List {
         }
     }
 
-    public Position locate(Postcard x) {
-        PostcardObject xx = new PostcardObject(x);
+    public Position locate(Postcard x) { // возвращает позицию объекта x. если его нет, возвращает END()
         int i = head;
         while (i != -1) {
-            if (postcard_list[i].equals(xx)) {
+            if (postcard_list[i].cardObject.isDataEqual(x)) {
                 return new Position(i);
             }
             i = postcard_list[i].next;
@@ -158,9 +161,7 @@ public class List {
         }
         System.out.println();
     }
-    public boolean arePosEqual(Position a, Position b){
-        return a.p == b.p;
-    }
+
 }
 
 

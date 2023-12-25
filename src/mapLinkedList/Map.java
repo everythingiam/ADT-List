@@ -47,10 +47,20 @@ public class Map {
         PostcardObject locatedD = locateD(d);
 
         if (locatedD != null){
-            r = locatedD.cardObject.adress;
+            char[] newArray = locatedD.cardObject.adress;
+            copy_array(r, newArray);
             return true;
         }
         return false;
+    }
+    public void copy_array(char[] r, char[] newArray){
+//        char[] newArray = new char[r.length];
+//        r = new char[newArray.length];
+
+        for (int i = 0; i < r.length; i++) {
+            r[i] = newArray[i];
+        }
+//        return newArray;
     }
 
     public void print(){
@@ -58,6 +68,11 @@ public class Map {
         while (current != null){
             current.cardObject.print_postcard();
             current = current.next;
+        }
+    }
+    public void printArray(char[] array){
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i]);
         }
     }
 

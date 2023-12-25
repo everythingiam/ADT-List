@@ -5,8 +5,17 @@ public class Postcard {
     public char[] adress = new char[50];
 
     public Postcard(char[] name, char[] adress){
-        this.name = name;
-        this.adress = adress;
+//        this.name = name;
+//        this.adress = adress;
+        this.name = new char[30];
+        this.adress = new char[50];
+
+        for (int i = 0; i < name.length; i++) {
+            this.name[i] = name[i];
+        }
+        for (int i = 0; i < adress.length; i++) {
+            this.adress[i] = adress[i];
+        }
     }
 
     public Postcard (Postcard x){
@@ -51,6 +60,7 @@ public class Postcard {
         // 1. Сначала одним циклом выводим имя
         // 2. Ставим пробел
         // 3. Другим циклом выводим адрес
+
         for (int i = 0; i < name.length; i++) {
             System.out.print(name[i]);
         }

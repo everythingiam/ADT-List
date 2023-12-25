@@ -47,14 +47,30 @@ public class Map {
     public boolean compute(char[] d, char[] r){
         Position locatedD = locateD(d);
         if (locatedD != null){
-            r = L.retrieve(locatedD).adress; //сделать отдельно метод копирования массива в r
+            Postcard newAdress = L.retrieve(locatedD); //сделать отдельно метод копирования массива в r
+            copy_array(r, newAdress.adress);
             return true;
         }
         return false;
     }
 
+    public void copy_array(char[] r, char[] newArray){
+//        char[] newArray = new char[r.length];
+//        r = new char[newArray.length];
+
+        for (int i = 0; i < r.length; i++) {
+            r[i] = newArray[i];
+        }
+//        return newArray;
+    }
+
     public void print(){
         L.print();
+    }
+    public void printArray(char[] array){
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i]);
+        }
     }
 
 //    M – отображение, d – элемент из области определения, r – элемент из области

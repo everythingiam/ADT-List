@@ -6,5 +6,8 @@ public class Position {
     public Position(int position){
         p = position;
     }
+    public boolean arePosEqual(Position b){
+        return this.p == b.p;
+    }
 }
 
