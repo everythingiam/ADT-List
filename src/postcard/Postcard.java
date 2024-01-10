@@ -62,10 +62,16 @@ public class Postcard {
         // 3. Другим циклом выводим адрес
 
         for (int i = 0; i < name.length; i++) {
+            if (name[i] == '\u0000'){
+                break;
+            }
             System.out.print(name[i]);
         }
         System.out.print(" ");
         for (int i = 0; i < adress.length; i++) {
+            if (adress[i] == '\u0000'){
+                break;
+            }
             System.out.print(adress[i]);
         }
         System.out.println();

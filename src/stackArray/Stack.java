@@ -16,13 +16,13 @@ public class Stack {
     }
 
     public Postcard top(){ //есть
-        return postcard_list[last].cardObject;
+        return new Postcard(postcard_list[last].cardObject);
     }
 
     public Postcard pop(){ //есть
         PostcardObject tmp = postcard_list[last];
         last--;
-        return tmp.cardObject;
+        return new Postcard(tmp.cardObject);
     }
 
     public void push(Postcard x){ //есть

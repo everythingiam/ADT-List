@@ -4,43 +4,49 @@ import postcard.Postcard;
 import exception.MyException;
 
 public class Queue {
-    private int last;
-    private int first;
+    private int front;
+    private int rear;
+    private int SIZE = 20;
     private PostcardObject[] postcard_list;
 
 
     public Queue(){
-        postcard_list = new PostcardObject[20];
-        last = postcard_list.length - 1;
-        first = 0;
+        postcard_list = new PostcardObject[SIZE];
+        rear = SIZE - 1;
+        front = 0;
     }
 
     public void makeNull(){
-        last = postcard_list.length - 1; //ласт МАКС - 1
-        first = 0;
+        rear = SIZE - 1;
+        front = 0;
     }
     public Postcard front(){
-        return postcard_list[first].cardObject;
+        return new Postcard(postcard_list[front].cardObject);
     }
     public Postcard dequeue(){ //извлечь из начала очереди
-        PostcardObject tmp = postcard_list[first];
-        first++;
-        return tmp.cardObject;
-    }
-    public void enqueue(Postcard x){ //добавить в конец очереди
-        last++;
-        postcard_list[last] = new PostcardObject(x);
+        PostcardObject tmp = postcard_list[front];
+        front = (front + 1) % SIZE;
+        return new Postcard(tmp.cardObject);
     }
 
+    public void enqueue(Postcard x){ //добавить в конец очереди
+        rear = (rear + 1) % SIZE;
+        postcard_list[rear] = new PostcardObject(x);
+    }
+//циклический массив
     public boolean empty(){
-        return last == -1;
+        return front == (rear + 1) % SIZE;
     }
+    //сделать отдеьлно метод для сдвига и дважды вызвать его на фуле
     public boolean full(){
-        return postcard_list.length == last - 1;
+        return front == (rear + 2) % SIZE;
     }
-    public void print(){
-        for (int i = first; i <= last; i++) {
-            postcard_list[i].cardObject.print_postcard();
+    public void print() {
+        for (int i = 0; i < SIZE; i++) {
+            int index = (front + i) % SIZE;
+            if (postcard_list[index] != null) {
+                postcard_list[index].cardObject.print_postcard();
+            }
         }
     }
 //    MAKENULL(Q) – очищает очередь Q, делая ее пустой.

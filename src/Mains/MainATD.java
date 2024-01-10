@@ -1,7 +1,7 @@
 package Mains;
-import arrayList1.*;
+//import arrayList1.*;
 //import linkedListList1.*;
-//import duoListList1.*;
+import duoListList1.*;
 //import cursorList1.*;
 //import tmp.*;
 import postcard.Postcard;
@@ -72,7 +72,7 @@ public class MainATD {
 //        L.insert(L.locate(kasha), babushka);
 //
         L.insert(L.getFirst(), tom); //вставка в начало самое (перед первым)
-        L.delete(L.locate(tom));
+//        L.delete(L.locate(tom));
 //
 //        L.insert(L.getEndL(), dasha); //вставка в позицию после последнего
 

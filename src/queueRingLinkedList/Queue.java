@@ -9,7 +9,7 @@ public class Queue {
     PostcardObject tail;
 
     public Queue(){
-        tail = null; //ссылаться сразу на элемент, голову убрать !!!
+        tail = null;
     }
 
     public void makeNull(){
@@ -17,7 +17,7 @@ public class Queue {
     }
 
     public Postcard front(){
-        return tail.next.cardObject;
+        return new Postcard(tail.next.cardObject);
     }
     public void enqueue(Postcard x){
         if (tail == null){
@@ -38,7 +38,7 @@ public class Queue {
         } else {
             tail.next = tail.next.next;
         }
-        return tmp.cardObject;
+        return new Postcard(tmp.cardObject);
     }
 
     public boolean empty(){

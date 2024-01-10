@@ -72,6 +72,9 @@ public class Map {
     }
     public void printArray(char[] array){
         for (int i = 0; i < array.length; i++) {
+            if (array[i] == '\u0000'){
+                break;
+            }
             System.out.print(array[i]);
         }
     }

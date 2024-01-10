@@ -20,18 +20,18 @@ public class Stack {
         L.makeNull();
     }
     public Postcard top(){
-        return L.retrieve(L.getFirst());
+        return new Postcard(L.retrieve(L.getFirst()));
     }
     public Postcard pop(){
         Postcard tmp = L.retrieve(L.getFirst());
         L.delete(L.getFirst());
-        return tmp;
+        return new Postcard(tmp);
     }
     public void push(Postcard x){
         L.insert(L.getFirst(), x);
     }
     public boolean empty() {
-        return L.getFirst().equals(L.getEndL());
+        return L.getFirst().arePosEqual(L.getEndL());
     }
 
     public boolean full(){

@@ -68,21 +68,6 @@ public class List {
         return null;
     }
 
-    //Возвращает позицию перед pos.
-    public Position getPrevious(Position pos){ //есть
-        // если такая позиция есть и она не первая, то
-        // создать переменную previous и впихнуть в неё head.
-        // и пока previous.next не станет пустым,
-        // то проходить через список.
-        // дойдет до конца - вернуть previous
-        //вернуть исключен е если нет пердыдущей
-        PostcardObject previous = getPrevious(pos.p);
-        if (previous != null){
-            return new Position(previous);
-        }
-        throw new MyException("Position is out of bounds");
-    }
-
     //Возвращает элемент в позиции pos
     public Postcard retrieve(Position pos){ //есть
         //проверять наличием предыдущего элемента

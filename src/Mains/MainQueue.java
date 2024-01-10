@@ -1,7 +1,7 @@
 package Mains;
-//import queueArray.Queue;
+import queueArray.Queue;
 //import queueRingLinkedList.Queue;
-import queueADTList.Queue;
+//import queueADTList.Queue;
 import postcard.Postcard;
 
 public class MainQueue {

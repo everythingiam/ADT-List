@@ -16,7 +16,7 @@ public class Queue {
         L.makeNull();
     }
     public Postcard front(){
-        return L.retrieve(L.getFirst());
+        return new Postcard(L.retrieve(L.getFirst()));
     }
 
     public void enqueue(Postcard x){
@@ -25,7 +25,7 @@ public class Queue {
     public Postcard dequeue(){
         Postcard tmp = L.retrieve(L.getFirst());
         L.delete(L.getFirst());
-        return tmp;
+        return new Postcard(tmp);
     }
     public boolean empty(){return L.getFirst().equals(L.getEndL());
     }

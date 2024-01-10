@@ -27,30 +27,25 @@ public class List {
     }
     //Вставляет элемент х в позицию pos
     public void insert(Position pos, Postcard x){ //есть
-        //проверка на наличие позиции
-        if (pos == null) {
-            return;
-        }
-        //вставка в пустой список:
-        if (head == null) {
-            head = new PostcardObject(x);
-            tail = head;
-            return;
-        }
-        //вставка в голову:
-        if (pos.p == head){
-            PostcardObject tmp = new PostcardObject(head.cardObject);
-            if (head == tail){
-                tail = tmp;
-            } else{
-                head.next.prev = tmp;
+        if (pos.p == null){
+            //вставка в голову
+            if (head == null) {
+                head = new PostcardObject(x);
+                tail = head;
+                return;
             }
-            tmp.next = head.next;
-            head.cardObject = x;
-            tmp.prev = head;
-            head.next = tmp;
-            return;
+            //вставка в позицию после последнего
+            else {
+                PostcardObject xx = new PostcardObject(x);
+                xx.prev = tail;
+                tail.next = xx;
+                tail = xx;
+                return;
+            }
         }
+        //если позиция не определена, то я вставляю после последнего.
+        //варианты: 1, 2. проверка pos.p равен null. 3 это в тэил вствка,
+        // 4 общий случай поиском (куда-нибудь кроме хвоста)
 
         //вставка в конец
         if (pos.p == tail){
@@ -62,23 +57,17 @@ public class List {
             return;
         }
 
-        //вставка в позицию после последнего
-        if (pos.p == null) {
-            PostcardObject xx = new PostcardObject(x);
-            xx.prev = tail;
-            tail.next = xx;
-            tail = xx;
+        //вставка в середину
+        if (!isInList(pos.p)){
             return;
         }
 
-        //вставка в середину
-        if (isInList(pos.p)){
-            PostcardObject tmp = new PostcardObject(pos.p.cardObject);
-            tmp.next = pos.p.next;
-            tmp.prev = pos.p;
-            pos.p.cardObject = x;
-            pos.p.next = tmp;
-        }
+        PostcardObject tmp = new PostcardObject(pos.p.cardObject);
+        tmp.next = pos.p.next;
+        tmp.prev = pos.p;
+        pos.p.cardObject = x;
+        pos.p.next = tmp;
+
     }
 
     public Position locate(Postcard x){ //есть
@@ -106,7 +95,7 @@ public class List {
 
     public void delete (Position pos){ //есть
 //        1.Если позиции нет
-        if (pos.p == null || !isInList(pos.p)){
+        if (pos.p == null || !isInList(pos.p)){ //проверить хед = 0 (пустой ли список) то ртурн
             return;
         }
 //                удаление из головы
@@ -136,10 +125,13 @@ public class List {
             pos.p = pos.p.next;
             return;
         }
+        if (isInList(pos.p)){
+            pos.p.prev.next = pos.p.next;
+            pos.p.next.prev = pos.p.prev;
+            pos.p = pos.p.next;
+        }
 
-        pos.p.prev.next = pos.p.next;
-        pos.p.next.prev = pos.p.prev;
-        pos.p = pos.p.next;
+
     }
     //Возвращает следующую за pos позицию
     public Position getNext (Position pos){ //есть
