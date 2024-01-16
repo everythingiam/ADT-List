@@ -87,23 +87,18 @@ public class List {
     public Postcard retrieve (Position pos){ //есть
 //        1. если есть позиция, то вернуть объект из нее
 //                2. если ее нет - выбросить исключение
-        if (isInList(pos.p)){
-            return pos.p.cardObject;
-        } //здесь тоже нормальную порверук сделай
-        throw new MyException("position is out of bounds");
+        if (pos.p == null || !isInList(pos.p)){
+            throw new MyException("position is out of bounds");
+        }
+        return new Postcard(pos.p.cardObject);
     }
 
     public void delete (Position pos){ //есть
 //        1.Если позиции нет
-        if (pos.p == null || !isInList(pos.p)){ //проверить хед = 0 (пустой ли список) то ртурн
+        if (pos.p == null || head == null){ //проверить хед = 0 (пустой ли список) то ртурн
             return;
         }
-//                удаление из головы
-//        1. если позиция голова, то
-//                2. если позивия еще и хвост, то удаляем единственный элемент (зануляем их)
-//        3. голова = голова.next
-//            4. предудщий за головой = null
-//                5. вернуть позицию головы
+
         if (pos.p == head){
             if (pos.p == tail){
                 head = null;
@@ -125,39 +120,32 @@ public class List {
             pos.p = pos.p.next;
             return;
         }
-        if (isInList(pos.p)){
-            pos.p.prev.next = pos.p.next;
-            pos.p.next.prev = pos.p.prev;
-            pos.p = pos.p.next;
-        }
 
-
+        pos.p.prev.next = pos.p.next;
+        pos.p.next.prev = pos.p.prev;
+        pos.p = pos.p.next;
     }
     //Возвращает следующую за pos позицию
     public Position getNext (Position pos){ //есть
 //        1. если позиция есть, и
 //                2. если она еще и хвост, то вернуть пощицию в null
 //            3. иначе вернуть следующую позицию
-        if (isInList(pos.p)){
-            if (pos.p == tail){
-                return new Position(null);
-            } else
-            return new Position(pos.p.next);
+        if (pos.p == null || !isInList(pos.p)){
+            throw new MyException("position out of bounds");
         }
-        //всё-таки поменять проверку с гетпревиус на просто изИнЛист
-        throw new MyException("position out of bounds");
+
+        if (pos.p == tail)
+            return new Position(null);
+
+        return new Position(pos.p.next);
     }
 
     //Возвращает позицию предыдущего
     public Position getPrevious(Position pos){ //есть
-        if (isInList(pos.p)){
-            if (pos.p.prev != null){
-                return new Position(pos.p.prev);
-            }
+        if (pos.p == null || !isInList(pos.p) || pos.p == head){
+            throw new MyException("position out of bounds");
         }
-//        1. если позивия есть, и
-//                2. если предыдущая за ней не null, то вернуть предыдущую позицию
-        throw new MyException("Position is out of bounds");
+        return new Position(pos.p.prev);
     }
 
     //делает список пустым

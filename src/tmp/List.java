@@ -19,17 +19,17 @@ public class List {
         head = -1;
     }
 
-    private int previous(int pos) {
+    private int previous(int pos) { //вспомогательный
         int prev = -1;
         int current = head;
         while (current != -1) {
-            if (postcard_list[current].cardObject.isDataEqual(postcard_list[pos].cardObject)) {
+            if (current == pos) {
                 return prev;
             }
             prev = current;
             current = postcard_list[current].next;
         }
-        return prev;
+        return -1;
     }
 
     private int last() {
@@ -44,15 +44,12 @@ public class List {
 
     public Position getEndL() {
         return new Position(-1);
-    } //просто -1. сделать
+    }
 
     public void insert(Position pos, Postcard x) { // вставляет х в позицию р
         //вставка в пустой список
         //сделать в соответсвии в связном списком
 
-//        if (pos.p == null){
-//
-//        }
         if (pos.p == -1){
             if (head == -1) {
                 //вставка в пустой лист
@@ -76,8 +73,7 @@ public class List {
             int npos = SPACE;
             SPACE = postcard_list[SPACE].next;
             postcard_list[npos] = new PostcardObject(postcard_list[head].cardObject, postcard_list[head].next);
-            postcard_list[head].cardObject = x;
-            postcard_list[head].next = npos;
+            postcard_list[head] = new PostcardObject(x, npos);
             return;
         }
 
@@ -89,9 +85,7 @@ public class List {
         int npos = SPACE;
         SPACE = postcard_list[SPACE].next;
         postcard_list[npos] = new PostcardObject(postcard_list[pos.p].cardObject, postcard_list[pos.p].next);
-        postcard_list[pos.p].cardObject = x;
-        postcard_list[pos.p].next = npos;
-
+        postcard_list[pos.p] = new PostcardObject(x, npos);
     }
 
     public Position locate(Postcard x) { // возвращает позицию объекта x. если его нет, возвращает END()
@@ -102,59 +96,55 @@ public class List {
             }
             i = postcard_list[i].next;
         }
-        return new Position(postcard_list.length - 1);
+        return new Position(-1);
     }
 
-    public Postcard retrieve(Position position) {
-        if (position.p == head || previous(position.p) != -1) {
-            return postcard_list[position.p].cardObject;
+    public Postcard retrieve(Position pos) {
+        int prev = previous(pos.p);
+        if (pos.p == head || prev != -1) {
+            return new Postcard(postcard_list[pos.p].cardObject);
         }
         throw new MyException("position is out of bounds");
     }
 
-    public Position delete(Position position) { //на позишен -1
+    public void delete(Position position) { //проверить на позишен -1
+        if (position.p == -1 || head == -1){
+            return;
+        }
+
         if (position.p == head) {
             int pos = head;
             head = postcard_list[head].next;
             postcard_list[pos].next = SPACE;
             SPACE = pos;
-            return new Position(head);
         }
         int prev = previous(position.p);
-        if (prev != -1) {
-            if (position.p == last()) {
-                postcard_list[prev].next = -1;
-                postcard_list[position.p].next = SPACE;
-                SPACE = position.p;
-                return new Position(-1);
-            }
-            postcard_list[prev].next = postcard_list[position.p].next;
-            postcard_list[position.p].next = SPACE;
-            SPACE = position.p;
-            return new Position(postcard_list[prev].next);
+        if (prev == -1) {
+            return;
         }
-        return position;
+        postcard_list[prev].next = postcard_list[position.p].next;
+        postcard_list[position.p].next = SPACE;
+        SPACE = position.p;
+
     }
 
     public Position getNext(Position position) {
-        if (position.p == last()) { //тут на позишен -1 проверяить
-            return new Position(-1);
-        }
-        if (position.p == head || previous(position.p) != -1) {
-            return new Position(postcard_list[position.p].next);
-        }
-        throw new MyException("position is out of bounds");
-    }
-
-    public Position getPrevious(Position position) {
-        if (position.p == -1){
+        if (position.p == -1){ //тут на позишен -1 проверяить
             throw new MyException("position is out of bounds");
         }
-        int prev = previous(position.p);
+        return new Position(postcard_list[position.p].next);
+    }
+
+    public Position getPrevious(Position pos) {
+        if (pos.p == -1){
+            throw new MyException("position is out of bounds");
+        }
+        int prev = previous(pos.p);
         if (prev != -1) {
             return new Position(prev);
         }
         throw new MyException("position is out of bounds");
+
     }
 
     public void makenull() {

@@ -1,9 +1,9 @@
 package Mains;
 //import arrayList1.*;
 //import linkedListList1.*;
-import duoListList1.*;
+//import duoListList1.*;
 //import cursorList1.*;
-//import tmp.*;
+import tmp.*;
 import postcard.Postcard;
 
 import java.util.Scanner;
@@ -52,33 +52,35 @@ public class MainATD {
         Position p = L.getFirst();
         Position q;
 
-         while (!p.arePosEqual(L.getEndL())) {
-             q = L.getNext(p);
-             while (!q.arePosEqual(L.getEndL())) {
-                 if (L.retrieve(p).isDataEqual(L.retrieve(q))){
-                     L.delete(q);
-                 } else {
-                     q = L.getNext(q);
-                 }
-             }
-             p = L.getNext(p); //обращение к только что удаленному адресу может быть просто некст
-         }
+//         while (!p.arePosEqual(L.getEndL())) {
+//             q = L.getNext(p);
+//             while (!q.arePosEqual(L.getEndL())) {
+//                 if (L.retrieve(p).isDataEqual(L.retrieve(q))){
+//                     L.delete(q);
+//                 } else {
+//                     q = L.getNext(q);
+//                 }
+//             }
+//             p = L.getNext(p); //обращение к только что удаленному адресу может быть просто некст
+//         }
          L.print();
 //
         System.out.println();
 //
         System.out.println("Проверки методов:");
-        L.insert(L.locate(kasha), babushka); //вставка в середину
+//        L.insert(L.locate(kasha), babushka); //вставка в середину
 //        L.insert(L.locate(kasha), babushka);
 //
         L.insert(L.getFirst(), tom); //вставка в начало самое (перед первым)
-//        L.delete(L.locate(tom));
 //
-//        L.insert(L.getEndL(), dasha); //вставка в позицию после последнего
+        L.insert(L.getEndL(), dasha); //вставка в позицию после последнего
 
 //        L.insert(L.locate(dasha), babushka); //вставка в последний элемент
-        System.out.println();
+//        System.out.println();
         L.print();
+
+        System.out.println();
+//        L.retrieve(L.locate(kasha)).print_postcard();
 //        System.out.println();
 //        L.retrieve(L.locate(kasha)).print_postcard();
 //
@@ -91,15 +93,18 @@ public class MainATD {
 //        L.retrieve(L.getFirst()).print_postcard();
 //
 //        L.retrieve(L.locate(tom)).print_postcard();
-//        L.delete(L.locate(tom));
+//        L.delete(L.locate(babushka));
 //        L.delete(L.getEndL());
-//        L.print();
+        L.delete(L.locate(dasha));
+
+        L.insert(L.locate(kasha), babushka);
+        L.print();
 //        System.out.println();
 
 //        L.insert(L.getNext(L.locate(dasha)), babushka);
 //        L.print();
 //        L.retrieve(L.getPrevious(L.getEndL())).print_postcard();
-//        L.retrieve(L.getPrevious(L.locate(babushka))).print_postcard();
+        L.retrieve(L.getNext(L.locate(kasha))).print_postcard();
 //        L.retrieve(L.getPrevious(L.getFirst())).print_postcard();
 //        L.retrieve(L.locate(tom)).print_postcard();
 

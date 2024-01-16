@@ -6,8 +6,8 @@ public class Map {
     private PostcardObject head;
 
     public Map(){
-        Postcard kasha = new Postcard(new char[]{'k', 'a', 's', 'h', 'a'}, new char[]{'N', 'e', 'w', '-', 'Y', 'o', 'r', 'k'});
-        head = new PostcardObject(kasha);
+        Postcard dasha = new Postcard(new char[]{'D', 'a', 's', 'h', 'a'}, new char[]{'M', 'o', 's', 'c', 'o', 'w'});
+        head = new PostcardObject(dasha);
     }
 
     public void makeNull(){
@@ -15,10 +15,10 @@ public class Map {
     }
 
     //ищет позицию ключа d
-    private PostcardObject locateD(char[] d){
+    private PostcardObject locateD(char[] d){ //ищет ключ d
         PostcardObject current = head;
         while (current != null){
-            if (current.cardObject.adress != d){
+            if (!current.cardObject.equalToName(d)){
                 return current;
             }
             current = current.next;
@@ -26,19 +26,15 @@ public class Map {
         return null;
     }
     public void assign(char[] d, char[] r){
-        //есть еще идея: если найдется имя, то удалить карточку и создать тупо новую с новым адресом
         PostcardObject locatedD = locateD(d);
-
         if (locatedD != null){
-            locatedD = locatedD.next;
+            head = head.next;
+            copy_array(r, locatedD.cardObject.adress);
         }
         Postcard x = new Postcard(d, r);
         PostcardObject obj = new PostcardObject(x);
         obj.next = head;
         head = obj;
-//        1. ищу имя Д.
-//        2. если оно есть, то заменяю в нем адрес. Либо удаляю его и создаю новую карточку.
-        //3. если нет, то создаю новую карточку просто и пихаю в начало
     }
 
     //Область определения d - имя
@@ -53,17 +49,13 @@ public class Map {
         }
         return false;
     }
-    public void copy_array(char[] r, char[] newArray){
-//        char[] newArray = new char[r.length];
-//        r = new char[newArray.length];
-
+    public void copy_array(char[] r, char[] newArray){ //копирует массив в массив
         for (int i = 0; i < r.length; i++) {
             r[i] = newArray[i];
         }
-//        return newArray;
     }
 
-    public void print(){
+    public void print(){ //ппечать отображкения
         PostcardObject current = head;
         while (current != null){
             current.cardObject.print_postcard();

@@ -20,15 +20,10 @@ public class List {
         //если список не пустой, вернуть следующий.
         //если элемент первый, вернуть head.next
         //исключение, если нет следующей
-        if (pos.p == head)
-            return new Position(head.next);
-
-        PostcardObject previous = getPrevious(pos.p);
-        if (previous != null){
-            previous = previous.next;
-            return new Position(previous.next);
+        if (pos.p == null) {
+            throw new MyException("Position is out of bounds!");
         }
-        throw new MyException("Position is out of bounds!");
+        return new Position(pos.p.next);
     }
 
     //Возвращает позицию после последнего 
@@ -75,7 +70,7 @@ public class List {
         //если нет - выбросить исключение
         PostcardObject previous = getPrevious(pos.p);
         if ((pos.p == head) || previous != null) {
-            return pos.p.cardObject;
+            return new Postcard(pos.p.cardObject);
         }
         throw new MyException("Position is out of bounds");
     }

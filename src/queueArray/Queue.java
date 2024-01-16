@@ -25,21 +25,24 @@ public class Queue {
     }
     public Postcard dequeue(){ //извлечь из начала очереди
         PostcardObject tmp = postcard_list[front];
-        front = (front + 1) % SIZE;
+        front = shift(front);
         return new Postcard(tmp.cardObject);
     }
 
     public void enqueue(Postcard x){ //добавить в конец очереди
-        rear = (rear + 1) % SIZE;
+        rear = shift(rear);
         postcard_list[rear] = new PostcardObject(x);
     }
 //циклический массив
+    public int shift(int num){
+        return (num + 1) % SIZE;
+    }
     public boolean empty(){
-        return front == (rear + 1) % SIZE;
+        return front == shift(rear);
     }
     //сделать отдеьлно метод для сдвига и дважды вызвать его на фуле
     public boolean full(){
-        return front == (rear + 2) % SIZE;
+        return front == shift(shift(rear));
     }
     public void print() {
         for (int i = 0; i < SIZE; i++) {
