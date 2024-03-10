@@ -1,125 +1,159 @@
 package cursorList1;
-
-import exception.MyException;
 import postcard.Postcard;
-
+import exception.MyException;
 public class List {
     private static PostcardObject[] postcard_list;
-    private static int SPACE; //первая позиция в списке пустых
-    private int head; //первая элемент в списке
+    private static int SPACE;
+    private int head;
 
-    public List(){
+    public static void initCursor() { //инициализация
+        postcard_list = new PostcardObject[50];
+        SPACE = 0;
+        for (int i = 0; i < postcard_list.length - 1; i++) {
+            postcard_list[i] = new PostcardObject(i + 1);
+        }
+        postcard_list[postcard_list.length - 1] = new PostcardObject(-1);
+    }
+
+    public List() {
         head = -1;
     }
-    public static void initCursor(){
-        postcard_list = new PostcardObject[20];
-        SPACE = 0;
-//        1. выделяется память под массив объектов PostcardObject размером 20.
-//     2. индекс SPACE устанавливается в 0 для отслеживания свободных элементов в массиве.
-//        3. заполняется массив объектами PostcardObject, каждый из которых имеет свой индекс.
-//   4. создается объект карточки с индексом -1, который служит "заглушкой" для обозначения конца списка.
+
+    private int previous(int pos) { //вспомогательный
+        int prev = -1;
+        int current = head;
+        while (current != -1) {
+            if (current == pos) {
+                return prev;
+            }
+            prev = current;
+            current = postcard_list[current].next;
+        }
+        return -1;
     }
 
-    private int previous(int necessary) {
-//        1. prev инициализируется значением -1 для отслеживания предыдущего элемента в списке.
-//        2. current инициализируется значением head, представляющим начало списка.
-//        3. запускается цикл, который продолжается до тех пор, пока current не станет равным -1.
-//        4. проверяется, равен ли текущий элемент postcard_list[current] элементу с
-//        индексом necessary в списке.
-//        5. если да, возвращается значение prev, представляющее
-//        индекс предыдущего элемента.
-//                6. если нет, prev присваивается текущему значению
-//                current, а current обновляется следующим элементом в списке.
-//        7. если цикл завершается, возвращается значение prev, представляющее последний
-//        элемент списка или -1, если список пуст.
-        return -1;
-
-    }
-
-    private int last(){
-        //как previous только без проверки с necessary
-        return -1;
+    private int last() {
+        int prev = -1;
+        int current = head;
+        while (current != -1) {
+            prev = current;
+            current = postcard_list[current].next;
+        }
+        return prev;
     }
 
     public Position getEndL() {
-        return new Position(postcard_list.length - 1);
-    }
-    public void insert(Postcard x, Position pos){
-//        1. проверяется, пуст ли список (если head равен -1).
-//        2. если список пуст, устанавливается head в значение SPACE, что
-//        указывает на первый элемент в массиве postcard_list. SPACE затем
-//        обновляется на следующий свободный индекс в массиве, и в этом
-//        индексе создается новый объект PostcardObject с данными x.
-
-//        3. если position.p == head (вставка перед первым)
-//        ,создается новый элемент с данными, равными данным
-//        первого элемента, и его следующим элементом становится первый
-//        элемент. Данным первого элемента присваиваются данные x.
-
-//        4. если position.p == -1 (вставка в конец списка)
-//        создается новый элемент с данными x и следующим элементом -1. Затем
-//        найден предыдущий элемент, и его следующим элементом становится новый элемент.
-
-//        5. если предыдущий элемент существует (проверяется с
-//        помощью previous(position.p) != -1), создается новый элемент
-//        с данными, равными данным элемента, находящегося по указанной
-//        позиции. Затем данные этого элемента обновляются данными x, а
-//        следующим элементом становится новый элемент, который занимает
-//        свободное место SPACE в массиве. Переменная SPACE обновляется на
-//        следующий свободный индекс в массиве.
-    }
-    public Position locate(Postcard x){
-//        1. Создается новый объект PostcardObject с данными x.
-//                2. Инициализируется переменная i значением head, указывающей на начало списка.
-
-//         3. В цикле прохода по списку (while (i != -1)), выполняются следующие действия:
-//               3.1.Проверяется, равен ли текущий элемент списка (postcard_list[i]) созданному объекту xx
-//                  (сравнение с использованием метода equals).
-//              3.2.Если равен, возвращается новый объект Position с позицией i.
-//        3.3 Иначе, обновляется значение i значением next текущего элемента списка.
-//                4. Если весь список пройден, и не найдено совпадение с объектом
-//                xx, возвращается новый объект Position с позицией, указывающей на
-//                последний элемент массива postcard_list.
         return new Position(-1);
-
     }
-    public Postcard retrieve(tmp.Position position) {
-//        проверяется условие: если позиция position соответствует
-//        значению head (указывает на начало списка) или если предыдущая
-//        позиция (previous(position.p)) существует (не равна -1):
-//           Возвращается объект Postcard, который хранится в поле cardObject
-//              элемента списка, соответствующего позиции position.p.
+
+    public void insert(Position pos, Postcard x) { // вставляет х в позицию р
+        //вставка в пустой список
+        //сделать в соответсвии в связном списком
+
+        if (pos.p == -1){
+            if (head == -1) {
+                //вставка в пустой лист
+                head = SPACE;
+                SPACE = postcard_list[SPACE].next;
+                postcard_list[head] = new PostcardObject(x);
+                return;
+            } else {
+                //вставка в конец
+                int npos = SPACE;
+                SPACE = postcard_list[SPACE].next;
+                postcard_list[npos] = new PostcardObject(x, -1);
+                int prev = last();
+                postcard_list[prev].next = npos;
+                return;
+            }
+        }
+
+        //вставка в голову
+        if (pos.p == head) {
+            int npos = SPACE;
+            SPACE = postcard_list[SPACE].next;
+            postcard_list[npos] = new PostcardObject(postcard_list[head].cardObject, postcard_list[head].next);
+            postcard_list[head] = new PostcardObject(x, npos);
+            return;
+        }
+
+        //в середину
+        if (previous(pos.p) == -1){
+            return;
+        }
+
+        int npos = SPACE;
+        SPACE = postcard_list[SPACE].next;
+        postcard_list[npos] = new PostcardObject(postcard_list[pos.p].cardObject, postcard_list[pos.p].next);
+        postcard_list[pos.p] = new PostcardObject(x, npos);
+    }
+
+    public Position locate(Postcard x) { // возвращает позицию объекта x. если его нет, возвращает END()
+        int i = head;
+        while (i != -1) {
+            if (postcard_list[i].cardObject.isDataEqual(x)) {
+                return new Position(i);
+            }
+            i = postcard_list[i].next;
+        }
+        return new Position(-1);
+    }
+
+    public Postcard retrieve(Position pos) {
+        int prev = previous(pos.p);
+        if (pos.p == head || prev != -1) {
+            return new Postcard(postcard_list[pos.p].cardObject);
+        }
         throw new MyException("position is out of bounds");
     }
 
-    public Position delete(tmp.Position position) {
-//        1. нсли позиция position соответствует головной позиции списка (head):
-//
-//         1.1 устанавливаем новую голову списка (head) в следующую позицию после текущей головной.
-//                1.2 освобождаем текущую головную позицию, обновляем связи.
-//                1.3 возвращаем новую позицию, указывающую на голову.
-//        2. если предыдущая позиция (prev) существует (не равна -1):
-//
-//        2.1 проверяем, является ли position последней позицией в списке.
-//           2.1.1 если да, обрубаем связь с предыдущей позицией и освобождаем память.
-//                2.1.2 возвращаем позицию, указывающую на конец списка (-1).
-//            2.2 если position не последняя, обновляем связи и освобождаем память.
-//              2.2.1 возвращаем позицию, указывающую на следующую после удаленной позицию.
-        return new Position(-1);
+    public void delete(Position position) { //проверить на позишен -1
+        if (position.p == -1 || head == -1){
+            return;
+        }
 
+        if (position.p == head) {
+            int pos = head;
+            head = postcard_list[head].next;
+            postcard_list[pos].next = SPACE;
+            SPACE = pos;
+        }
+        int prev = previous(position.p);
+        if (prev == -1) {
+            return;
+        }
+        postcard_list[prev].next = postcard_list[position.p].next;
+        postcard_list[position.p].next = SPACE;
+        SPACE = position.p;
+        position.p = postcard_list[prev].next;
     }
+
     public Position getNext(Position position) {
-//        1. если текущая позиция — последняя, возвращаем новую позицию,
-//        указывающую на конец списка (-1).
-//                2. если текущая позиция — головная или имеет предыдущую
-//                позицию, возвращаем новую позицию, указывающую на следующую позицию.
-        throw new MyException("position is out of bounds");
+
+        if (position.p != head){ //тут на позишен -1 проверяить
+            throw new MyException("position is out of bounds");
+        }
+        if (previous(position.p) == 0){
+            return new Position(postcard_list[position.p].next);
+        }
+
+        int previ = previous(position.p);
+        if (postcard_list[previ].next == -1){
+            throw new MyException("position is out of bounds");
+        }
+        return new Position(postcard_list[position.p].next);
     }
-    public Position getPrevious(Position position) {
-//        1. Получаем предыдущую позицию относительно текущей позиции.
-//        2. Если предыдущая позиция существует (не равна -1), возвращаем
-//        новую позицию, указывающую на предыдущую позицию.
+
+    public Position getPrevious(Position pos) {
+        if (pos.p == -1){
+            throw new MyException("position is out of bounds");
+        }
+        int prev = previous(pos.p);
+        if (prev != -1) {
+            return new Position(prev);
+        }
         throw new MyException("position is out of bounds");
+
     }
 
     public void makenull() {
@@ -132,10 +166,15 @@ public class List {
         return new Position(head);
     }
 
-    public void print(){
-//        1. начинаем с head.
-//          2. пока текущая позиция не равна -1:
-//         3. Выводим информацию о текущей открытке, используя метод print_postcard().
-//       4. Переходим к следующей позиции, используя postcard_list[current].next.
+    public void print() {
+        int current = head;
+        while (current != -1) {
+            postcard_list[current].cardObject.print_postcard();
+            current = postcard_list[current].next;
+        }
+        System.out.println();
     }
+
 }
+
+
