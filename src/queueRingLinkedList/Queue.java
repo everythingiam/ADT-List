@@ -38,7 +38,7 @@ public class Queue {
         } else {
             tail.next = tail.next.next;
         }
-        return new Postcard(tmp.cardObject);
+        return tmp.cardObject;
     }
 
     public boolean empty(){
@@ -48,7 +48,11 @@ public class Queue {
         return false;
     }
     public void print(){
-
+        PostcardObject current = tail.next;
+        do {
+            current.cardObject.print_postcard();
+            current = current.next;
+        } while (current != tail.next);
     }
     //    MAKENULL(Q) – очищает очередь Q, делая ее пустой.
 //            FRONT(Q) – возвращает первый элемент (копия) очереди Q.

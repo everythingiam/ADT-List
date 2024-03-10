@@ -1,7 +1,6 @@
 package queueArray;
 import arrayList1.PostcardObject;
 import postcard.Postcard;
-import exception.MyException;
 
 public class Queue {
     private int front;
@@ -26,7 +25,7 @@ public class Queue {
     public Postcard dequeue(){ //извлечь из начала очереди
         PostcardObject tmp = postcard_list[front];
         front = shift(front);
-        return new Postcard(tmp.cardObject);
+        return tmp.cardObject;
     }
 
     public void enqueue(Postcard x){ //добавить в конец очереди
@@ -45,13 +44,11 @@ public class Queue {
         return front == shift(shift(rear));
     }
     public void print() {
-        for (int i = 0; i < SIZE; i++) {
-            int index = (front + i) % SIZE;
-            if (postcard_list[index] != null) {
-                postcard_list[index].cardObject.print_postcard();
-            }
+        for (int i = front; i < shift(rear); i++) {
+            postcard_list[i].cardObject.print_postcard();
         }
     }
+
 //    MAKENULL(Q) – очищает очередь Q, делая ее пустой.
 //            FRONT(Q) – возвращает первый элемент (копия) очереди Q.
 //    DEQUEUE(Q) – удаляет первый элемент очереди Q, и возвращает его в качестве
@@ -61,4 +58,13 @@ public class Queue {
 //    противном случае.
 //    FULL(Q) – возвращает значение true, если очередь Q полная, и значение false в
 //    противном случае.
+
+    //    public void print(){
+//        int i = front;
+//        int en = shift(rear);
+//        while (i != en){
+//            postcard_list[i].cardObject.print_postcard();
+//            i = shift(i);
+//        }
+//    }
 }

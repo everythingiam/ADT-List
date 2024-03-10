@@ -89,5 +89,12 @@ public class Postcard {
         }
         return true;
     }
+    public void copy_array(char[] newArray){
+//        newArray = new char[this.adress.length];
+        for (int i = 0; i < adress.length; i++) {
+            newArray[i] = this.adress[i];
+        }
+//        return newArray;
+    }
 
     }

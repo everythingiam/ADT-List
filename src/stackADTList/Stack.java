@@ -25,7 +25,7 @@ public class Stack {
     public Postcard pop(){
         Postcard tmp = L.retrieve(L.getFirst());
         L.delete(L.getFirst());
-        return new Postcard(tmp);
+        return tmp;
     }
     public void push(Postcard x){
         L.insert(L.getFirst(), x);

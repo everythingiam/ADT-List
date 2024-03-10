@@ -125,11 +125,20 @@ public class List {
         postcard_list[prev].next = postcard_list[position.p].next;
         postcard_list[position.p].next = SPACE;
         SPACE = position.p;
-
+        position.p = postcard_list[prev].next;
     }
 
     public Position getNext(Position position) {
-        if (position.p == -1){ //тут на позишен -1 проверяить
+
+        if (position.p != head){ //тут на позишен -1 проверяить
+            throw new MyException("position is out of bounds");
+        }
+        if (previous(position.p) == 0){
+            return new Position(postcard_list[position.p].next);
+        }
+
+        int previ = previous(position.p);
+        if (postcard_list[previ].next == -1){
             throw new MyException("position is out of bounds");
         }
         return new Position(postcard_list[position.p].next);

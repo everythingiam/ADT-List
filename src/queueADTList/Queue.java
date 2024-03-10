@@ -7,7 +7,7 @@ import linkedListList1.*;
 //import duoListList1.*;
 
 public class Queue {
-    private List L;
+    private List L; //во фронт возвращать ссылки
     public Queue(){
         L = new List();
         L.initCursor();
@@ -25,7 +25,7 @@ public class Queue {
     public Postcard dequeue(){
         Postcard tmp = L.retrieve(L.getFirst());
         L.delete(L.getFirst());
-        return new Postcard(tmp);
+        return tmp;
     }
     public boolean empty(){return L.getFirst().equals(L.getEndL());
     }

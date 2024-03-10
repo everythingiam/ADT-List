@@ -29,7 +29,10 @@ public class Map {
         PostcardObject locatedD = locateD(d);
         if (locatedD != null){
             head = head.next;
-            copy_array(r, locatedD.cardObject.adress);
+            Postcard newArray = locatedD.cardObject;
+//            newArray = new char[r.length];
+
+            newArray.copy_array(r);
         }
         Postcard x = new Postcard(d, r);
         PostcardObject obj = new PostcardObject(x);
@@ -43,17 +46,17 @@ public class Map {
         PostcardObject locatedD = locateD(d);
 
         if (locatedD != null){
-            char[] newArray = locatedD.cardObject.adress;
-            copy_array(r, newArray);
+            Postcard newArray = locatedD.cardObject;
+            newArray.copy_array(r);
             return true;
         }
         return false;
     }
-    public void copy_array(char[] r, char[] newArray){ //копирует массив в массив
-        for (int i = 0; i < r.length; i++) {
-            r[i] = newArray[i];
-        }
-    }
+//    public void copy_array(char[] r, char[] newArray){ //копирует массив в массив
+//        for (int i = 0; i < r.length; i++) {
+//            r[i] = newArray[i];
+//        }
+//    }
 
     public void print(){ //ппечать отображкения
         PostcardObject current = head;

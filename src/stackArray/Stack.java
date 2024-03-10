@@ -22,7 +22,7 @@ public class Stack {
     public Postcard pop(){ //есть
         PostcardObject tmp = postcard_list[last];
         last--;
-        return new Postcard(tmp.cardObject);
+        return tmp.cardObject;
     }
 
     public void push(Postcard x){ //есть

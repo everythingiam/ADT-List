@@ -1,9 +1,9 @@
 package Mains;
 //import arrayList1.*;
 //import linkedListList1.*;
-//import duoListList1.*;
+import duoListList1.*;
 //import cursorList1.*;
-import tmp.*;
+//import tmp.*;
 import postcard.Postcard;
 
 import java.util.Scanner;
@@ -52,17 +52,17 @@ public class MainATD {
         Position p = L.getFirst();
         Position q;
 
-//         while (!p.arePosEqual(L.getEndL())) {
-//             q = L.getNext(p);
-//             while (!q.arePosEqual(L.getEndL())) {
-//                 if (L.retrieve(p).isDataEqual(L.retrieve(q))){
-//                     L.delete(q);
-//                 } else {
-//                     q = L.getNext(q);
-//                 }
-//             }
-//             p = L.getNext(p); //обращение к только что удаленному адресу может быть просто некст
-//         }
+         while (!p.arePosEqual(L.getEndL())) {
+             q = L.getNext(p);
+             while (!q.arePosEqual(L.getEndL())) {
+                 if (L.retrieve(p).isDataEqual(L.retrieve(q))){
+                     L.delete(q);
+                 } else {
+                     q = L.getNext(q);
+                 }
+             }
+             p = L.getNext(p); //обращение к только что удаленному адресу может быть просто некст
+         }
          L.print();
 //
         System.out.println();
@@ -104,7 +104,7 @@ public class MainATD {
 //        L.insert(L.getNext(L.locate(dasha)), babushka);
 //        L.print();
 //        L.retrieve(L.getPrevious(L.getEndL())).print_postcard();
-        L.retrieve(L.getNext(L.locate(kasha))).print_postcard();
+//        L.retrieve(L.getNext(L.locate(kasha))).print_postcard();
 //        L.retrieve(L.getPrevious(L.getFirst())).print_postcard();
 //        L.retrieve(L.locate(tom)).print_postcard();
 

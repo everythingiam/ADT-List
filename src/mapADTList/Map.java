@@ -1,8 +1,8 @@
 package mapADTList;
 import postcard.Postcard;
-import arrayList1.*;
+//import arrayList1.*;
 //import linkedListList1.*;
-//import duoListList1.*;
+import duoListList1.*;
 //import cursorList1.*;
 public class Map {
     List L;
@@ -48,21 +48,20 @@ public class Map {
         Position locatedD = locateD(d);
         if (locatedD != null){
             Postcard newAdress = L.retrieve(locatedD); //сделать отдельно метод копирования массива в r
-            copy_array(r, newAdress.adress);
+            newAdress.copy_array(r);
             return true;
         }
         return false;
     }
 
-    public void copy_array(char[] r, char[] newArray){
-//        char[] newArray = new char[r.length];
-//        r = new char[newArray.length];
-
-        for (int i = 0; i < r.length; i++) {
-            r[i] = newArray[i];
-        }
-//        return newArray;
-    }
+//    public void copy_array(char[] r, char[] newArray){
+////        char[] newArray = new char[r.length];
+////        r = new char[newArray.length];
+//        for (int i = 0; i < r.length; i++) {
+//            r[i] = newArray[i];
+//        }
+////        return newArray;
+//    }
 
     public void print(){
         L.print();

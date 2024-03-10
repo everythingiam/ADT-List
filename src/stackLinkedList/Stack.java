@@ -25,7 +25,7 @@ public class Stack {
    public Postcard pop(){ //есть
         PostcardObject tmp = head;
         head = head.next;
-        return new Postcard(tmp.cardObject);
+        return tmp.cardObject;
    }
     public void push(Postcard x){ //есть
         PostcardObject obj = new PostcardObject(x);
